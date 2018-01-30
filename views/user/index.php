@@ -22,21 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
+        'columns' => [ 
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'name',
             [
-                'label' => 'dob',
-                'filter'=> DatePicker::widget([
-                'attribute' => 'dob',
-                'model' => $searchModel,
-                'clientOptions' => [
-                    'autoclose' => false,
-                    'format' => 'dd-mm-yyyy'
-                   ],
-                ]),
+            'attribute' => 'dob',
+            'value' => function($model){
+                            return $model->getDob($model->dob);
+                        },
+            'filter' => DatePicker::widget(['language' => 'ru' , 'dateFormat' => 'dd-MM-yyyy']),
+            'format' => 'raw',
             ],
             'phone',
             'address',

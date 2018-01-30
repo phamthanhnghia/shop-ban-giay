@@ -62,13 +62,13 @@ class User extends \yii\db\ActiveRecord
             'id' => 'ID',
             'username' => 'Username',
             'password' => 'Password',
-            'name' => 'Name',
-            'dob' => 'Dob',
+            'name' => 'Tên',
+            'dob' => 'Sinh nhật',
             'phone' => 'Điện thoại',
             'role' => 'Phân quyền',
-            'address' => 'Address',
+            'address' => 'Địa chỉ',
             'email' => 'Email',
-            'status' => '1: còn hoạt động- 0 : ko hoạt động',
+            'status' => 'Trạng thái',
         ];
     }
 
@@ -133,6 +133,9 @@ class User extends \yii\db\ActiveRecord
         $user = new User();
         $aStatus = $user->getArrayStatus();
         return ($aStatus[$this->status]) ? $aStatus[$this->status] : '';
+    }
+    public function getDob($dob){
+        return Yii::$app->formatter->asDate($dob, 'd-M-Y');
     }
 
 }
