@@ -65,11 +65,31 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $post = Yii::$app->request->post();
+        if($post){
+             $model->beforeSaveUser($post['User']);
+             $model->validate();
+             if(!$model->hasErrors()){
+                $model->save();
+             return $this->redirect(['view', 'id' => $model->id]);
+             }
+             
+            // echo "<pre>";
+            // print_r($model);
+            // echo "</pre>";
+            // die;
         }
-
+        //$model->beforeSave();
+//        $model->load(Yii::$app->request->post());
+//        $model->validate();
+//        
+//        if($model->hasErrors()){
+//            $model->save();
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        }
+        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //     return $this->redirect(['view', 'id' => $model->id]);
+        // }
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -85,11 +105,20 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $post = Yii::$app->request->post();
+        if($post){
+             $model->beforeSaveUser($post['User']);
+             $model->validate();
+             if(!$model->hasErrors()){
+                $model->save();
+             return $this->redirect(['view', 'id' => $model->id]);
+             }
+             
+            // echo "<pre>";
+            // print_r($model);
+            // echo "</pre>";
+            // die;
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -121,7 +150,6 @@ class UserController extends Controller
         if (($model = User::findOne($id)) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

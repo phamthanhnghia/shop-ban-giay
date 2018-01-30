@@ -34,10 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'dob',
             'phone',
-            'role',
-            'addpress',
+            [
+                'label'=>'role',
+                'value'=>$model->getRole(),
+            ],
+            'address',
             'email:email',
-            'status',
+            [
+                'label'=>'status',
+                'value'=>$model->getStatus(),
+            ],
         ],
     ]) ?>
 

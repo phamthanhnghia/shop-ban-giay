@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\jui\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\controllers\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,15 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            'password',
             'name',
-            'dob',
-            //'phone',
-            //'role',
-            //'addpress',
-            //'email:email',
-            //'status',
+            [
+                'label' => 'DATE',
+                'filter'=> DatePicker::widget([
+                'attribute' => 'dob',
+                'model' => $searchModel,
+                'clientOptions' => [
+                     'autoclose' => false,
+                    'format' => 'yyyy-mm-dd'
+                   ],
+                ]),
+            ],
+            'phone',
+            'address',
+            'email',
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

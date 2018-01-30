@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'role') ?>
 
-    <?php // echo $form->field($model, 'addpress') ?>
+    <?php // echo $form->field($model, 'address') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 
