@@ -64,8 +64,8 @@ class User extends \yii\db\ActiveRecord
             'password' => 'Password',
             'name' => 'Name',
             'dob' => 'Dob',
-            'phone' => 'Phone',
-            'role' => '0: admin - 1 : khách hàng- 2 : nhân viên - 3: quản lý',
+            'phone' => 'Điện thoại',
+            'role' => 'Phân quyền',
             'address' => 'Address',
             'email' => 'Email',
             'status' => '1: còn hoạt động- 0 : ko hoạt động',
@@ -81,12 +81,12 @@ class User extends \yii\db\ActiveRecord
     }
 
     // value 
-    public static function getArrayRole(){
+    public function getArrayRole(){
         return $arrayName = array(
             User::ADMIN => 'admin',
             User::KHACH => 'Khách hàng',
             User::NHANVIEN => 'Nhân viên',
-            User::QUANLY => 'Quản lý' 
+            User::QUANLY => 'Quản lý', 
         );
     }
     public function getArrayStatus(){
@@ -96,6 +96,10 @@ class User extends \yii\db\ActiveRecord
         );
     }
     public function beforeSaveUser($post){
+        // echo "<pre>";
+        //     print_r($post);
+        //     echo "</pre>";
+        //     die;
         $this->username = ($post['username']) ? $post['username'] : '';
         $this->password = ($post['password']) ? $post['password'] : '';
         $this->name = ($post['name']) ? $post['name'] : '';
@@ -106,6 +110,10 @@ class User extends \yii\db\ActiveRecord
         $this->email = ($post['email']) ? $post['email'] : '';
     }
     public function beforeUpdateUser($post){
+        // echo "<pre>";
+        //     print_r($post);
+        //     echo "</pre>";
+        //     die;
         $this->username = ($post['username']) ? $post['username'] : '';
         $this->password = ($post['password']) ? $post['password'] : '';
         $this->name = ($post['name']) ? $post['name'] : '';
@@ -124,6 +132,7 @@ class User extends \yii\db\ActiveRecord
     public function getStatus(){
         $user = new User();
         $aStatus = $user->getArrayStatus();
-        return ($aStatus[$this->role]) ? $aStatus[$this->role] : '';
+        return ($aStatus[$this->status]) ? $aStatus[$this->status] : '';
     }
+
 }

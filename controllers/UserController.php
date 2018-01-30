@@ -73,23 +73,7 @@ class UserController extends Controller
                 $model->save();
              return $this->redirect(['view', 'id' => $model->id]);
              }
-             
-            // echo "<pre>";
-            // print_r($model);
-            // echo "</pre>";
-            // die;
         }
-        //$model->beforeSave();
-//        $model->load(Yii::$app->request->post());
-//        $model->validate();
-//        
-//        if($model->hasErrors()){
-//            $model->save();
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //     return $this->redirect(['view', 'id' => $model->id]);
-        // }
         return $this->render('create', [
             'model' => $model,
         ]);

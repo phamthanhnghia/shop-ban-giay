@@ -28,13 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             [
-                'label' => 'DATE',
+                'label' => 'dob',
                 'filter'=> DatePicker::widget([
                 'attribute' => 'dob',
                 'model' => $searchModel,
                 'clientOptions' => [
-                     'autoclose' => false,
-                    'format' => 'yyyy-mm-dd'
+                    'autoclose' => false,
+                    'format' => 'dd-mm-yyyy'
                    ],
                 ]),
             ],

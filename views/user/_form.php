@@ -22,11 +22,10 @@ use app\models\User;
     <?= $form->field($model, 'dob')->textInput()->widget(yii\jui\DatePicker::className(), [
     'language' => 'en',
     'dateFormat' => 'dd-MM-yyyy',])  ?>
-    
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'role')->dropDownList(User::getArrayRole()) ?>
+    <?php $user = new User(); echo $form->field($model, 'role')->dropDownList($user->getArrayRole()); ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
