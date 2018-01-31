@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Product;
+use app\models\Type;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
@@ -18,15 +20,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput() ?>
 
-    <?= $form->field($model, 'gender')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
+    <?php $product = new Product(); echo $form->field($model, 'gender')->radioList($product->getRender()); ?>
 
     <?= $form->field($model, 'list_color')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?php echo $form->field($model, 'status')->dropDownList($product->getArrayStatus()); ?>
 
-    <?= $form->field($model, 'id_type')->textInput() ?>
+    <?php $type = new Type();echo $form->field($model, 'id_type')->dropDownList($type->FormatArrayType()); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "product".
  *
@@ -57,7 +58,7 @@ class Product extends \yii\db\ActiveRecord
             'code' => 'Code',
             'name' => 'Name',
             'price' => 'Price',
-            'gender' => '0: nữ - 1: nam',
+            'gender' => 'Giới tính',
             'created_date' => 'Created Date',
             'list_color' => 'List Color',
             'status' => '0: không bán - 1: mới - 2 : bình thường',
@@ -96,4 +97,18 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Type::className(), ['id' => 'id_type']);
     }
+
+    public function getRender()
+    {
+        return $arrayName = array('0'=>'Nữ',
+                                    '1'=>'Nam',);
+    }
+
+    public function getArrayStatus()
+    {
+        return $arayName = array('0'=>'Không bán',
+                                    '1'=>'Mới',
+                                    '2'=>'Bình thường');
+    }
+
 }
