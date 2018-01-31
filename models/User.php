@@ -21,7 +21,7 @@ use app\components\Format;
  *
  * @property Bill[] $bills
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     const ADMIN = 1;
     const KHACH = 2;
@@ -80,13 +80,13 @@ class User extends \yii\db\ActiveRecord
         return $this->hasMany(Bill::className(), ['id_user' => 'id']);
     }
 
-    // value 
+    // value
     public function getArrayRole(){
         return $arrayName = array(
             User::ADMIN => 'admin',
             User::KHACH => 'Khách hàng',
             User::NHANVIEN => 'Nhân viên',
-            User::QUANLY => 'Quản lý', 
+            User::QUANLY => 'Quản lý',
         );
     }
     public function getArrayStatus(){
@@ -102,6 +102,7 @@ class User extends \yii\db\ActiveRecord
         //     die;
         $this->username = ($post['username']) ? $post['username'] : '';
         $this->password = ($post['password']) ? $post['password'] : '';
+        $this->auth_key = Yii::$app->security->generateRandomString();
         $this->name = ($post['name']) ? $post['name'] : '';
         $this->dob = ($post['dob']) ? Format::dateConverDmyToYmd($post['dob'],'-') : '';
         $this->phone = ($post['phone']) ? $post['phone'] : '';
@@ -137,5 +138,48 @@ class User extends \yii\db\ActiveRecord
     public function getDob($dob){
         return Yii::$app->formatter->asDate($dob, 'd-M-Y');
     }
+    public function findByUsername($username){
+         $user = User::find()
+                 ->where(['username'=> $username])
+                 ->one();
+         // echo "<pre>";
+         // print_r($user->password);
+         // echo "</pre>";
+         // die;
+         return $user;
+    }
+    public function validatePassword($password){
+         return ($this->password == $password) ? true : false; //
+    }
+    public function hasUsername(){
+      $countUser = User::find()
+            ->where(['username'=> $username])
+            ->count();
+            return ($countUser > 0) ? true : false;
+    }
 
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->auth_key === $authKey;
+    }
 }
