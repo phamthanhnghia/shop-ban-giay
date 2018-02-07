@@ -61,7 +61,7 @@ class Product extends \yii\db\ActiveRecord
             'gender' => 'Giới tính',
             'created_date' => 'Created Date',
             'list_color' => 'List Color',
-            'status' => '0: không bán - 1: mới - 2 : bình thường',
+            'status' => 'Trạng thái',
             'id_type' => 'Id Type',
         ];
     }

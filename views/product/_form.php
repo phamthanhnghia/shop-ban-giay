@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Product;
+use app\models\ImageProduct;
 use app\models\Type;
 
 /* @var $this yii\web\View */
@@ -28,6 +29,7 @@ use app\models\Type;
 
     <?php $type = new Type();echo $form->field($model, 'id_type')->dropDownList($type->FormatArrayType()); ?>
 
+    <?php echo $form->field(new ImageProduct(), 'link')->fileInput(); ?>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
