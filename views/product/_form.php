@@ -29,7 +29,7 @@ use app\models\Type;
 
     <?php $type = new Type();echo $form->field($model, 'id_type')->dropDownList($type->FormatArrayType()); ?>
 
-    <?php echo $form->field(new ImageProduct(), 'link')->fileInput(); ?>
+    <?php //echo $form->field($model, 'link')->fileInput(); ?>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

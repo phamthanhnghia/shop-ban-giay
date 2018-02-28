@@ -69,6 +69,10 @@ class UserController extends Controller
         if($post){
              $model->beforeSaveUser($post['User']);
              $model->validate();
+//             echo "<pre>";
+//             print_r($model);
+//             echo "</pre>";
+//             die;
              if(!$model->hasErrors()){
                 $model->save();
              return $this->redirect(['view', 'id' => $model->id]);
@@ -97,7 +101,7 @@ class UserController extends Controller
                 $model->save();
              return $this->redirect(['view', 'id' => $model->id]);
              }
-             
+
             // echo "<pre>";
             // print_r($model);
             // echo "</pre>";
