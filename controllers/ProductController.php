@@ -4,12 +4,10 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Product;
-use app\controllers\ProductSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
-use yii\db\Connection;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -37,9 +35,12 @@ class ProductController extends Controller
      */
     public function actionIndex()
     {
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => Product::find(),
+//        ]);
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -67,78 +68,11 @@ class ProductController extends Controller
     public function actionCreate()
     {
         $model = new Product();
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            echo "<pre>";
-//            print_r($model);
-//            echo "</pre>";
-//            die;
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-        $post = Yii::$app->request->post();
-        if ($post) {
-            
-          // $imageFile = UploadedFile::getInstance($model, 'link');
-          // $name = "12312.".$imageFile->getExtension();
-          // $imageFile->saveAs($this->getStoreToSave().'/'. $name);
-          //
-//           echo "<pre>";
-//           print_r();
-//           echo "</pre>";
-//           die;
-//            $connection = new Connection();
-//            $connection->createCommand()->insert('product', [
-//                'code' => ($post["code"]) ? $post["code"] : "",
-//                'name' => ($post["name"]) ? $post["name"] : "",
-//                'price' => ($post["price"]) ? $post["price"] : "",
-//                'gender' => $post['gender'],
-//                'created_date' => date("Y-m-d h:m:s"),
-//                'list_color' => $post["list_color"],
-//                'status' => $post['status'],
-//                'id_type' => $post['id_type'],
-//            ])->execute();
-            
-            
-//            $format = "Y-m-d h:m:s"; // any format you wish
-//            $model->code = ($post["code"]) ? $post["code"] : "";
-//            $model->name = ($post["name"]) ? $post["name"] : "";
-//            $model->price = ($post["price"]) ? $post["price"] : "";
-//            $model->gender = ($post['gender']) ? $post['gender'] : '1';
-//            $model->created_date = date($format);
-//            $model->list_color = ($post["list_color"]) ? $post["list_color"] : '1';
-//            $model->status = ($post['status']) ? $post['status'] : '1';
-//            $model->id_type = ($post['id_type']) ? $post['id_type'] : '';
-            //$model->validate();
-          $model->beforeSave($post['Product']);
-          $model->validate();
-          //$model->attributes = $post['Product'];
-          if(!$model->hasErrors()){
-                $model->save(false);
-             return $this->redirect(['view', 'id' => $model->id]);
-             }
-          //$model->save();
-          //$model->getPrimaryKey();
-          //$model->load($post);
-          //$model->validate();
-          //$model->save();
-          // echo "<pre>";
-          // print_r($post['Product']['code']);
-          // echo "</pre>";
-          echo "<pre>";
-          print_r($model);
-          echo "</pre>";
-          die;
-          return $this->redirect(['view', 'id' => $model->id]);
-          if(!$model->hasErrors()){
-              $model->save();
-              return $this->redirect(['view', 'id' => $model->id]);
-          }
-
+        if ($model->load(Yii::$app->request->post())) {
+            $model->formatSave();
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //     return $this->redirect(['view', 'id' => $model->id]);
-        // }
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -155,7 +89,7 @@ class ProductController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save() ) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -192,10 +126,5 @@ class ProductController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function getStoreToSave(){
-      Yii::setAlias('@project', realpath(dirname(__FILE__).'/../'));
-      return Yii::getAlias('@project') .'\store';
     }
 }

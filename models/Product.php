@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 
-
 /**
  * This is the model class for table "product".
  *
@@ -17,19 +16,12 @@ use Yii;
  * @property string $list_color
  * @property int $status 0: không bán - 1: mới - 2 : bình thường
  * @property int $id_type
- *
- * @property BillDetail[] $billDetails
- * @property DiscountProduct[] $discountProducts
- * @property ImageProduct[] $imageProducts
- * @property Type $type
  */
 class Product extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
-    //public $link,$code,$name,$price,$gender,$created_date,$list_color,$status,$id_type;
-    
     public static function tableName()
     {
         return 'product';
@@ -46,7 +38,6 @@ class Product extends \yii\db\ActiveRecord
             [['created_date'], 'safe'],
             [['code'], 'string', 'max' => 20],
             [['name', 'list_color'], 'string', 'max' => 100],
-            [['id_type'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['id_type' => 'id']],
         ];
     }
 
@@ -56,50 +47,18 @@ class Product extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'code' => 'Code',
-            'name' => 'Name',
-            'price' => 'Price',
-            'gender' => 'Giới tính',
-            'created_date' => 'Created Date',
-            'list_color' => 'List Color',
-            'status' => 'Trạng thái',
-            'id_type' => 'Id Type',
+            'id' => Yii::t('app', 'ID'),
+            'code' => Yii::t('app', 'Mã sản phẩm'),
+            'name' => Yii::t('app', 'Tên sản phẩm'),
+            'price' => Yii::t('app', 'Giá'),
+            'gender' => Yii::t('app', 'Giới tình'),
+            'created_date' => Yii::t('app', 'thời gian tao'),
+            'list_color' => Yii::t('app', 'Màu sắc'),
+            'status' => Yii::t('app', 'Trạng thái'),
+            'id_type' => Yii::t('app', 'Loại'),
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getBillDetails()
-    {
-        return $this->hasMany(BillDetail::className(), ['id_product' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDiscountProducts()
-    {
-        return $this->hasMany(DiscountProduct::className(), ['id_product' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getImageProducts()
-    {
-        return $this->hasMany(ImageProduct::className(), ['id_product' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getType()
-    {
-        return $this->hasOne(Type::className(), ['id' => 'id_type']);
-    }
-
+    
     public function getRender()
     {
         return $arrayName = array('0'=>'Nữ',
@@ -112,18 +71,9 @@ class Product extends \yii\db\ActiveRecord
                                     '1'=>'Mới',
                                     '2'=>'Bình thường');
     }
-
-    public function beforeSave($post){
-        $format = "Y-m-d h:m:s"; // any format you wish
-        $this->code = ($post["code"]) ? $post["code"] : "";
-        $this->name = ($post['name']) ? $post['name'] : "";
-        //$this->price = ($post['price']) ? $post['price'] : "";
-        $this->price = $post['price'];
-        $this->gender = ($post['gender']) ? $post['gender'] : '1';
+    
+    public function formatSave(){
+        $format = "Y-m-d h:m:s";
         $this->created_date = date($format);
-        $this->list_color = ($post["list_color"]) ? $post["list_color"] : '1';
-        $this->status = ($post['status']) ? $post['status'] : '1';
-        $this->id_type = ($post['id_type']) ? $post['id_type'] : '';
     }
-
 }

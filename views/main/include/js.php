@@ -5,3 +5,4 @@
 <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="./template_file/popper.min.js"></script>
 <script src="./template_file/bootstrap.min.js"></script>
+<script src="./js/slideout-1.0.1/dist/slideout.min.js"></script>
