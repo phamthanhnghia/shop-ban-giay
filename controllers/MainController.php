@@ -17,8 +17,17 @@ class MainController extends Controller
     public function actionHome()
     {
         
+       
         $this->layout = 0;
         return $this->render('index');
         //echo "hihi";
+    }
+    public function actionLogout()
+    {
+        
+       
+        // $this->layout = 0;
+        // return $this->render('index');
+        echo "hihi";
     }
 }

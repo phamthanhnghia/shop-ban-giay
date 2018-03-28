@@ -1,3 +1,7 @@
+    <?php 
+    use app\models\User;
+    ?>
+
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,14 +18,38 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-
+                
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(Yii::$app->user->isGuest): ?> 
                     <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Signup</a></li>
+                    
+                    <li>
+                        <a href="index.php/site/login" >Login <b class="caret"></b></a>
+                        
+                    </li>
+                    <li><a href="index.php/user/create">Signup</a></li>
+                <?php else: ?>
+                    <li>
+                        <a href="index.php/site/login" class="dropdown-toggle" data-toggle="dropdown">
+                            <?php 
+                            echo (Yii::$app->user->identity->attributes)['username'] ;
+                            
+                            ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.php/user/logout" align="center"><strong>Sign out </strong></a></li>
+
+                            <li><a href="" align="center"><strong>Contact </strong></a></li>
+                            
+                            
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+
+
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Infomation <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
                             <li><a href="#"><strong>Mail: </strong>info@yourdomain.com</a></li>
