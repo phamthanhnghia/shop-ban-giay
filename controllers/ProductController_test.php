@@ -77,9 +77,9 @@ class ProductController extends Controller
         $post = Yii::$app->request->post();
         if ($post) {
             
-          // $imageFile = UploadedFile::getInstance($model, 'link');
-          // $name = "12312.".$imageFile->getExtension();
-          // $imageFile->saveAs($this->getStoreToSave().'/'. $name);
+          $imageFile = UploadedFile::getInstance($model, 'link');
+          $name = "12312.".$imageFile->getExtension();
+          $imageFile->saveAs($this->getStoreToSave().'/'. $name);
           //
 //           echo "<pre>";
 //           print_r();
