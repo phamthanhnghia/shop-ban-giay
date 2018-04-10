@@ -17,7 +17,7 @@ class MainController extends Controller
     public function actionHome()
     {
         
-        $this->layout = 'theme-admin';
+        $this->layout = 0;
         return $this->render('index');
         //echo "hihi";
     }

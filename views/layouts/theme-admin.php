@@ -56,6 +56,8 @@ AppAsset::register($this);
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<?php $this->beginBody() ?>
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -540,6 +542,15 @@ AppAsset::register($this);
     <!-- Main content -->
     <section class="content">
 
+
+
+
+
+
+      <?= $content ?>
+
+
+
     </section>
     <!-- /.content -->
   </div>
@@ -785,5 +796,7 @@ AppAsset::register($this);
 <script src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/js/pages/dashboard.js'?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/js/demo.js'?>"></script>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>
