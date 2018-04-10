@@ -53,6 +53,7 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'theme-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -65,6 +66,7 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'theme-admin';
         $model = new User();
         $post = Yii::$app->request->post();
         if($post){
@@ -93,6 +95,7 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'theme-admin';
         $model = $this->findModel($id);
         $post = Yii::$app->request->post();
         if($post){

@@ -19,9 +19,7 @@ use app\models\User;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'dob')->textInput()->widget(yii\jui\DatePicker::className(), [
-    'language' => 'en',
-    'dateFormat' => 'dd-MM-yyyy',])  ?>
+    <?= $form->field($model, 'dob')->input('date') ?>
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
