@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\bootstrap\ActiveForm;
 
 AppAsset::register($this);
 ?>
@@ -54,13 +55,14 @@ AppAsset::register($this);
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="../site/login" method="post">
+      <input type="hidden" name="_csrf" value="K6EgDvxt3GO1dWssFMXgutYb-OsOYjUO6craE1jSFSxT51Jnny-1M9YwH2lgr4vykC-dgV89Q3mgqOJiOppSGQ==">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="text" class="form-control" name="LoginForm[username]" placeholder="Username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" name="LoginForm[password]" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
