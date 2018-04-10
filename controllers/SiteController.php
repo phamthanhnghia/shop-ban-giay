@@ -71,6 +71,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+         $this->layout = 'theme-admin';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

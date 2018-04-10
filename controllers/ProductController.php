@@ -38,6 +38,8 @@ class ProductController extends Controller
 //        $dataProvider = new ActiveDataProvider([
 //            'query' => Product::find(),
 //        ]);
+
+        $this->layout = 'theme-admin';
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
@@ -55,6 +57,7 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'theme-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -67,6 +70,7 @@ class ProductController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'theme-admin';
         $model = new Product();
         if ($model->load(Yii::$app->request->post())) {
             $model->formatSave();
@@ -87,6 +91,7 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'theme-admin';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save() ) {
