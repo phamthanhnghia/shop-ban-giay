@@ -22,12 +22,4 @@ class MainController extends Controller
         return $this->render('index');
         //echo "hihi";
     }
-    public function actionLogout()
-    {
-        
-       
-        // $this->layout = 0;
-        // return $this->render('index');
-        echo "hihi";
-    }
 }
