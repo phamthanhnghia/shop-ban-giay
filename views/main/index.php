@@ -7,15 +7,15 @@
     <meta name="author" content="">
     <title>Bootstrap E-Commerce Template- DIGI Shop mini</title>
     <!-- Bootstrap core CSS -->
-    <link href="assets-theme/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo Yii::$app->homeUrl.'assets-theme/css/bootstrap.css'?>" rel="stylesheet">
     <!-- Fontawesome core CSS -->
-    <link href="assets-theme/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="<?php echo Yii::$app->homeUrl.'assets-theme/css/font-awesome.min.css' ?>" rel="stylesheet" />
     <!--GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!--Slide Show Css -->
-    <link href="assets-theme/ItemSlider/css/main-style.css" rel="stylesheet" />
+    <link href="<?php echo Yii::$app->homeUrl.'assets-theme/ItemSlider/css/main-style.css'?>" rel="stylesheet" />
     <!-- custom CSS here -->
-    <link href="assets-theme/css/style.css" rel="stylesheet" />
+    <link href="<?php echo Yii::$app->homeUrl.'assets-theme/css/style.css'?>" rel="stylesheet" />
 </head>
 <body>
     <?php include "nav.php"; ?>
@@ -407,12 +407,12 @@
 
     <?php include "footer.php";?>
     <!--Core JavaScript file  -->
-    <script src="assets-theme/js/jquery-1.10.2.js"></script>
+    <script src="<?php echo Yii::$app->homeUrl.'assets-theme/js/jquery-1.10.2.js'?>"></script>
     <!--bootstrap JavaScript file  -->
-    <script src="assets-theme/js/bootstrap.js"></script>
+    <script src="<?php echo Yii::$app->homeUrl.'assets-theme/js/bootstrap.js'?>"></script>
     <!--Slider JavaScript file  -->
-    <script src="assets-theme/ItemSlider/js/modernizr.custom.63321.js"></script>
-    <script src="assets-theme/ItemSlider/js/jquery.catslider.js"></script>
+    <script src="<?php echo Yii::$app->homeUrl.'assets-theme/ItemSlider/js/modernizr.custom.63321.js'?>"></script>
+    <script src="<?php echo Yii::$app->homeUrl.'assets-theme/ItemSlider/js/jquery.catslider.js'?>"></script>
     <script>
         $(function () {
 
