@@ -543,10 +543,6 @@ AppAsset::register($this);
     <section class="content">
 
 
-
-
-
-
       <?= $content ?>
 
 

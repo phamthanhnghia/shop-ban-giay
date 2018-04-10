@@ -35,6 +35,7 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'theme-admin';
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
