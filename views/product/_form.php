@@ -19,7 +19,7 @@ $type = new Type();
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'price')->textInput() ?>
+    <?php  echo $form->field($model, 'price')->textInput(); ?>
 
     <?php echo $form->field($model, 'gender')->radioList($product->getRender()); ?>
 
@@ -29,6 +29,19 @@ $type = new Type();
 
     <?php echo $form->field($model, 'id_type')->dropDownList($type->FormatArrayType()); ?>
 
+    <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+
+    <div class="form-group">
+        <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" class="btn btn-primary">Thêm</button></p>
+        <div class="btn-group">
+            <input type="file"  name="Image[1]" class="btn btn-default" id="exampleInputFile">
+            
+            <button type="button" class="btn btn-danger">Xoá</button>
+        </div>
+    </div>
+
+
+    <hr style="height:1px;border:none;color:#333;background-color:#333;" />
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
@@ -36,3 +49,7 @@ $type = new Type();
     <?php ActiveForm::end(); ?>
 
 </div>
+<script type="text/javascript">
+    
+
+</script>

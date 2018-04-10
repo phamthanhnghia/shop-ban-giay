@@ -73,6 +73,8 @@ class ProductController extends Controller
         $this->layout = 'theme-admin';
         $model = new Product();
         if ($model->load(Yii::$app->request->post())) {
+            print_r(Yii::$app->request->post());
+            die;
             $model->formatSave();
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
