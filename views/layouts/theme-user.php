@@ -57,10 +57,7 @@
                             ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="index.php/user/logout" align="center"><strong>Sign out </strong></a></li>
-
                             <li><a href="" align="center"><strong>Contact </strong></a></li>
-                            
-                            
                         </ul>
                     </li>
                 <?php endif; ?>

@@ -541,7 +541,7 @@ AppAsset::register($this);
     <!-- Main content -->
     <section class="content">
 
-
+      <?= Alert::widget() ?>
       <?= $content ?>
 
 

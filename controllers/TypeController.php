@@ -67,6 +67,10 @@ class TypeController extends Controller
         $model = new Type();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            echo '<pre>';
+            print_r(Yii::$app->request->post());
+            echo '</pre>';
+            die;
             return $this->redirect(['view', 'id' => $model->id]);
         }
         return $this->render('create', [
