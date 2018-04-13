@@ -31,8 +31,8 @@ $type = new Type();
 
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
 
-    <div class="form-group">
-        <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" class="btn btn-primary">Thêm</button></p>
+    <div class="form-group" id="them">
+        <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addbutton()" class="btn btn-primary">Thêm</button></p>
         <div class="btn-group">
             <input type="file"  name="Image[1]" class="btn btn-default" id="exampleInputFile">
             
@@ -50,6 +50,14 @@ $type = new Type();
 
 </div>
 <script type="text/javascript">
-    
+    function addbutton(){
+        console.log("ok");
+        var html = "";
+        html += "<div class=\"btn-group\">";
+        html += "<input type=\"file\"  name=\"Image[1]\" class=\"btn btn-default\" id=\"exampleInputFile\">";
+        html += "<button type=\"button\" class=\"btn btn-danger\">Xoá</button>";
+        html += "</div>";
+        $("#them").append(html);
+    }
 
 </script>
