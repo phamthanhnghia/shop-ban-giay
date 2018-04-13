@@ -35,10 +35,6 @@ AppAsset::register($this);
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo Yii::$app->homeUrl.'theme-admin-assets/plugins/iCheck/square/blue.css' ?>">
 
-
-
-
-
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>

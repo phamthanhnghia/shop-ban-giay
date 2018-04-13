@@ -124,7 +124,6 @@ class TypeController extends Controller
         if (($model = Type::findOne($id)) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
