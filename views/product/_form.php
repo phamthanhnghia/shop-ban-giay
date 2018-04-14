@@ -32,11 +32,11 @@ $type = new Type();
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
 
     <div class="form-group" id="them">
-        <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addbutton()" class="btn btn-primary">Thêm</button></p>
+        <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addButton()" class="btn btn-primary">Thêm</button></p>
         <div class="btn-group">
             <input type="file"  name="Image[1]" class="btn btn-default" id="exampleInputFile">
             
-            <button type="button" class="btn btn-danger">Xoá</button>
+            <button type="button" onclick="deleteButton()" class="btn btn-danger">Xoá</button>
         </div>
     </div>
 
@@ -50,14 +50,19 @@ $type = new Type();
 
 </div>
 <script type="text/javascript">
-    function addbutton(){
+    function addButton(){
         console.log("ok");
         var html = "";
-        html += "<div class=\"btn-group\">";
+        html += "<div class=\"btn-group add1\">";
         html += "<input type=\"file\"  name=\"Image[1]\" class=\"btn btn-default\" id=\"exampleInputFile\">";
-        html += "<button type=\"button\" class=\"btn btn-danger\">Xoá</button>";
+        html += "<button type=\"button\" onclick=\"deleteButton()\" class=\"btn btn-danger\">Xoá</button>";
         html += "</div>";
         $("#them").append(html);
+    }
+
+    function deleteButton(){
+        console.log("ok");
+        $(".add1").remove();
     }
 
 </script>
