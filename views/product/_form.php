@@ -33,11 +33,11 @@ $type = new Type();
 
     <div class="form-group" id="them">
         <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addButton()" class="btn btn-primary">Thêm</button></p>
-        <div class="btn-group">
+        <!-- <div class="btn-group">
             <input type="file"  name="Image[1]" class="btn btn-default" id="exampleInputFile">
             
             <button type="button" onclick="deleteButton()" class="btn btn-danger">Xoá</button>
-        </div>
+        </div> -->
     </div>
 
 
@@ -50,19 +50,23 @@ $type = new Type();
 
 </div>
 <script type="text/javascript">
+    var list = new Array();
+    var numB = 0; // number button
+    list.push({add : 1});
+
     function addButton(){
-        console.log("ok");
         var html = "";
-        html += "<div class=\"btn-group add1\">";
+        numB++;
+        html += "<div class=\"btn-group add1\" id=\"add"+numB+"\">";
         html += "<input type=\"file\"  name=\"Image[1]\" class=\"btn btn-default\" id=\"exampleInputFile\">";
-        html += "<button type=\"button\" onclick=\"deleteButton()\" class=\"btn btn-danger\">Xoá</button>";
+        html += "<button type=\"button\" onclick=\"deleteButton("+numB+")\" class=\"btn btn-danger\">Xoá</button>";
         html += "</div>";
         $("#them").append(html);
     }
 
-    function deleteButton(){
-        console.log("ok");
-        $(".add1").remove();
+    function deleteButton(so){
+        var idDelete = "add"+so;
+        $("#"+idDelete).remove();
     }
 
 </script>
