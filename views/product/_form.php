@@ -58,7 +58,7 @@ $type = new Type();
         var html = "";
         numB++;
         html += "<div class=\"btn-group add1\" id=\"add"+numB+"\">";
-        html += "<input type=\"file\"  name=\"Image[1]\" class=\"btn btn-default\" id=\"exampleInputFile\">";
+        html += "<input type=\"file\"  name=\"Image["+numB+"]\" class=\"btn btn-default\" id=\"exampleInputFile\">";
         html += "<button type=\"button\" onclick=\"deleteButton("+numB+")\" class=\"btn btn-danger\">Xoá</button>";
         html += "</div>";
         $("#them").append(html);
