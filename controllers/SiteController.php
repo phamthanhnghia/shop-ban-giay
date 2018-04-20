@@ -119,17 +119,15 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-        echo "fj";
-        die;
-        return $this->goHome();
-    }
+    // public function actionLogout()
+    // {
+    //     Yii::$app->user->logout();
+    //     return $this->goHome();
+    // }
 
     public function actionLogoutUser()
     {
-        Yii::$app->user->logout();
+        unset($_SESSION['ID_USER']);
         return $this->goHome();
     }
 

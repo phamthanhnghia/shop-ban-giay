@@ -40,27 +40,32 @@
 
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if(Yii::$app->user->isGuest): ?> 
-                    <li><a href="#">Track Order</a></li>
-                    
-                    <li>
-                        <a href="index.php/site/login" >Login <b class="caret"></b></a>
-                        
-                    </li>
-                    <li><a href="index.php/user/create">Signup</a></li>
-                <?php else: ?>
+                    <?php if(isset($_SESSION['ID_USER'])): ?> 
+
                     <li>
                         <a href="index.php/site/login" class="dropdown-toggle" data-toggle="dropdown">
-                            <?php 
-                            echo (Yii::$app->user->identity->attributes)['username'] ;
-                            
+                            <?php
+                            $users = User::findUsersById($_SESSION['ID_USER']);
+                            echo $users->name;
                             ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="../site/logout-user" align="center"><strong>Sign out </strong></a></li>
                             <li><a href="" align="center"><strong>Contact </strong></a></li>
                         </ul>
                     </li>
+
+
+                    
+                <?php else: ?>
+                    <li><a href="#">Track Order</a></li>
+                    
+                    <li>
+                        <a href="../../site/login" >Login <b class="caret"></b></a>
+                        
+                    </li>
+                    <li><a href="index.php/user/create">Signup</a></li>
                 <?php endif; ?>
+
 
 
 
