@@ -22,6 +22,8 @@ class Product extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $link;
+    
     public static function tableName()
     {
         return 'product';

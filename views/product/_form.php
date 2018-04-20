@@ -33,11 +33,11 @@ $type = new Type();
 
     <div class="form-group" id="them">
         <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addButton()" class="btn btn-primary">Thêm</button></p>
-        <!-- <div class="btn-group">
-            <input type="file"  name="Image[1]" class="btn btn-default" id="exampleInputFile">
+        <div class="btn-group">
+            <input type="file"  name="Product[link]" class="btn btn-default" id="exampleInputFile">
             
             <button type="button" onclick="deleteButton()" class="btn btn-danger">Xoá</button>
-        </div> -->
+        </div>
     </div>
 
 

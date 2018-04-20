@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
-
+use app\models\ImageProduct;
 /**
  * ProductController implements the CRUD actions for Product model.
  */
@@ -73,12 +73,27 @@ class ProductController extends Controller
     {
         $this->layout = 'theme-admin';
         $model = new Product();
+        $modelImage = new ImageProduct();
         if ($model->load(Yii::$app->request->post())) {
             $post = Yii::$app->request->post();
             echo "<pre>";
             print_r(Yii::$app->request->post());
             echo "</pre>";
-            $imageFile = UploadedFile::getInstance($post['Image']['2']);
+            // die;
+            $model->attributes=$_POST['Product'];
+
+            //  echo "<pre>";
+            // print_r($model);
+            // echo "</pre>";
+            // die;
+            
+            $imageFile = UploadedFile::getInstance($model,'link');
+
+            //  echo "<pre>";
+            // print_r($imageFile);
+            // echo "</pre>";
+            // die;
+
             $name = "12312.".$imageFile->getExtension();
             $imageFile->saveAs($this->getStoreToSave().'/'. $name);
             die;
