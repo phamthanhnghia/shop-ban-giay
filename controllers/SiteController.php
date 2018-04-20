@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -71,15 +72,43 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-         $this->layout = 0;
-        if (!Yii::$app->user->isGuest) {
+        //  $this->layout = 0;
+        // if (!Yii::$app->user->isGuest) {
+        //     return $this->goHome();
+        // }
+
+        // $model = new LoginForm();
+        // if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        //     return $this->goBack();
+        // }
+        // return $this->render('login', [
+        //     'model' => $model,
+        // ]);
+
+        $this->layout = 0;
+        $user = new User();
+        if ($user->idLogged()) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $post = Yii::$app->request->post();
+        if(isset($post['LoginForm'])){
+            $model->formatForLoginUsers($post['LoginForm']);
+            $model->login();
+            if( $user->idLogged()){
+                $id = $user->idLogged();
+                $user = $user->findUsersById($id);
+                $role = $user->role;
+                if($role == 1){
+                    header('Location: ../home');
+                    exit;
+                }
+            }
+            return $this->goHome();
         }
+        
+        $model->password = '';
         return $this->render('login', [
             'model' => $model,
         ]);

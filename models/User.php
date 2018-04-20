@@ -24,10 +24,10 @@ use app\components\Format;
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     const ADMIN = 1;
-    const KHACH = 2;
+    const QUANLY = 2;
     const NHANVIEN = 3;
-    const QUANLY = 4;
-    //
+    const KHACH = 4;
+    
     const CO = 1;
     const KHONG = 0;
     /**
@@ -84,9 +84,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getArrayRole(){
         return $arrayName = array(
             User::ADMIN => 'admin',
-            User::KHACH => 'Khách hàng',
-            User::NHANVIEN => 'Nhân viên',
             User::QUANLY => 'Quản lý',
+            User::NHANVIEN => 'Nhân viên',
+            User::KHACH => 'Khách hàng',
         );
     }
     public function getArrayStatus(){
@@ -151,12 +151,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password){
          return ($this->password == $password) ? true : false; //
     }
-    public function hasUsername(){
-      $countUser = User::find()
-            ->where(['username'=> $username])
-            ->count();
-            return ($countUser > 0) ? true : false;
-    }
+    // public function hasUsername(){
+    //   $countUser = User::find()
+    //         ->where(['username'=> $username])
+    //         ->count();
+    //         return ($countUser > 0) ? true : false;
+    // }
 
     public static function findIdentity($id)
     {
@@ -186,5 +186,95 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->auth_key === $authKey;
+    }
+
+
+    /////////
+
+    public static function findUsers($username,$password){
+        $let = User::findOne(['username' => $username],['password' == $password]);
+        if($let == ""){
+            return false;
+        }
+        return $let;
+    }
+    public function findUsersById($id){
+        $let = User::findOne(['id' => $id]);
+        if($let == ""){
+            return false;
+        }
+        return $let;
+    }
+
+    public function idLogged(){
+        if(isset($_SESSION['ID_USER'])){
+            return $_SESSION['ID_USER'];
+        }
+        return false;
+    }
+    public static function logout(){
+        unset($_SESSION['ID_USER']);
+    }
+    
+    public function getRoleUserLogged(){
+        $user = new User();
+        if($user->idLogged()){
+            $id = $user->idLogged();
+            return Users::findIdentity($id);
+        }
+        return false;
+    }
+
+    public function HasUserName($username){
+        $Users = User::find()->where(['username' => $username])->all();
+        if($Users){
+             return true;
+        }
+        return false;
+    }
+    
+    public static function CreateMessage($typemessage, $info){
+        $_SESSION['message'][$typemessage] = $info;
+    }
+    public static function CheckMessage(){
+        if(isset($_SESSION['message']['danger'])){
+            ?>
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Thất bại !</strong> <?= $_SESSION['message']['danger'] ?>
+              </div>
+            <?php
+            unset($_SESSION['message']['danger']);
+        }
+        if(isset($_SESSION['message']['success'])){
+            ?>
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Thành công !</strong> <?= $_SESSION['message']['success'] ?>
+              </div>
+            <?php
+            unset($_SESSION['message']['success']);
+        }
+        
+        if(isset($_SESSION['message']['info'])){
+            ?>
+            <div class="alert alert-info alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Thông tin !</strong> <?= $_SESSION['message']['info'] ?>
+              </div>
+            <?php
+            unset($_SESSION['message']['info']);
+        }
+        
+        if(isset($_SESSION['message']['warning'])){
+            ?>
+            <div class="alert alert-warning alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Cảnh báo !</strong> <?= $_SESSION['message']['warning'] ?>
+              </div>
+            <?php
+            unset($_SESSION['message']['warning']);
+        }
+        
     }
 }

@@ -57,10 +57,22 @@ class LoginForm extends Model
      * Logs in a user using the provided username and password.
      * @return bool whether the user is logged in successfully
      */
+    // public function login()
+    // {
+    //     if ($this->validate()) {
+    //         return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+    //     }
+    //     return false;
+    // }
+
     public function login()
-    {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+    {   
+        $users = new User();
+        $let = $users->findUsers($this->username,$this->password);
+        if($let != false){
+            $_SESSION['ID_USER'] = $let->id;
+
+            return true;
         }
         return false;
     }
@@ -68,7 +80,7 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return Users|null
      */
     public function getUser()
     {
@@ -78,4 +90,12 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+    
+    // nghia 
+    public function formatForLoginUsers($post){
+        $this->username = $post['username'];
+        $this->password = $post['password'];
+    }
+    
+    
 }
