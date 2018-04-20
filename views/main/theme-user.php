@@ -47,7 +47,7 @@
                         <a href="index.php/site/login" >Login <b class="caret"></b></a>
                         
                     </li>
-                    <li><a href="index.php/user/create">Signup</a></li>
+                    <li><a href="../site/register">Sign up</a></li>
                 <?php else: ?>
                     <li>
                         <a href="index.php/site/login" class="dropdown-toggle" data-toggle="dropdown">

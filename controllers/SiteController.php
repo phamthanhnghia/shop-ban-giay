@@ -158,4 +158,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+     public function actionRegister()
+    {
+        $this->layout = 'layout-user';
+        
+        return $this->render('register');
+    }
 }

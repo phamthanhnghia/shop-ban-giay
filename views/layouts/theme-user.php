@@ -63,7 +63,7 @@
                         <a href="../../site/login" >Login <b class="caret"></b></a>
                         
                     </li>
-                    <li><a href="index.php/user/create">Signup</a></li>
+                    <li><a href="../site/register">Sign up</a></li>
                 <?php endif; ?>
 
 
