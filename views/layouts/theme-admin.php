@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\User;
 
 AppAsset::register($this);
 ?>
@@ -542,7 +543,16 @@ AppAsset::register($this);
     <section class="content">
 
       <?= Alert::widget() ?>
-      <?= $content ?>
+      <?php
+                $user = new User();
+                if($user->idLogged() ){
+                    echo $content;
+                }
+                else{
+                    header('Location: /site/login');
+                    exit;
+                }
+                ?>
 
 
 
