@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -73,7 +74,13 @@ class ProductController extends Controller
         $this->layout = 'theme-admin';
         $model = new Product();
         if ($model->load(Yii::$app->request->post())) {
+            $post = Yii::$app->request->post();
+            echo "<pre>";
             print_r(Yii::$app->request->post());
+            echo "</pre>";
+            $imageFile = UploadedFile::getInstance($post['Image']['2']);
+            $name = "12312.".$imageFile->getExtension();
+            $imageFile->saveAs($this->getStoreToSave().'/'. $name);
             die;
             $model->formatSave();
             $model->save();
@@ -133,5 +140,10 @@ class ProductController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function getStoreToSave(){
+      Yii::setAlias('@project', realpath(dirname(__FILE__).'/../'));
+      return Yii::getAlias('@project') .'\store';
     }
 }
