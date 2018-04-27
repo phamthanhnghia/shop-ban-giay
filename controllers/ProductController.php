@@ -76,33 +76,31 @@ class ProductController extends Controller
         $modelImage = new ImageProduct();
         if ($model->load(Yii::$app->request->post())) {
             $post = Yii::$app->request->post();
-            echo "<pre>";
-            print_r(Yii::$app->request->post());
-            echo "</pre>";
-            // die;
             $model->attributes=$_POST['Product'];
+            $model->formatSave();
+            $model->save();
 
-            //  echo "<pre>";
+            // echo "<pre>";
             // print_r($model);
             // echo "</pre>";
             // die;
-            
-            $imageFile = UploadedFile::getInstance($model,'link');
-
-            //  echo "<pre>";
-            // print_r($imageFile);
-            // echo "</pre>";
-            // die;
-
-            $name = "12312.".$imageFile->getExtension();
-            $imageFile->saveAs($this->getStoreToSave().'/'. $name);
-            die;
-            $model->formatSave();
-            $model->save();
+            if(UploadedFile::getInstance($modelImage, 'link'))
+            {
+                $modelImage->id_product = $model->id;
+                // $modelImage->save();
+                $productId = $model->id;
+                $imageId = $modelImage->id;
+                $image = UploadedFile::getInstance($modelImage, 'link');
+                $imgName = '[giay]'.$productId.$imageId.'.'.$image->getExtension();
+                $image->saveAs($this->getStoreToSave().'/'.$imgName);
+                $modelImage->link = $imgName;
+                $modelImage->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
         return $this->render('create', [
             'model' => $model,
+            'modelImage'=> $modelImage,
         ]);
     }
 
@@ -118,7 +116,29 @@ class ProductController extends Controller
         $this->layout = 'theme-admin';
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save() ) {
+        $modelImage = new ImageProduct();
+        if ($model->load(Yii::$app->request->post())) {
+            $post = Yii::$app->request->post();
+            $model->attributes=$_POST['Product'];
+            $model->formatSave();
+            $model->save();
+
+            // echo "<pre>";
+            // print_r($model);
+            // echo "</pre>";
+            // die;
+            if(UploadedFile::getInstance($modelImage, 'link'))
+            {
+                $modelImage->id_product = $model->id;
+                // $modelImage->save();
+                $productId = $model->id;
+                $imageId = $modelImage->id;
+                $image = UploadedFile::getInstance($modelImage, 'link');
+                $imgName = '[giay]'.$productId.$imageId.'.'.$image->getExtension();
+                $image->saveAs($this->getStoreToSave().'/'.$imgName);
+                $modelImage->link = $imgName;
+                $modelImage->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -159,6 +179,6 @@ class ProductController extends Controller
 
     public function getStoreToSave(){
       Yii::setAlias('@project', realpath(dirname(__FILE__).'/../'));
-      return Yii::getAlias('@project') .'\store';
+      return Yii::getAlias('@project') .'\web\images\product-images';
     }
 }
