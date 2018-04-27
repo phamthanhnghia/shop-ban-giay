@@ -553,9 +553,6 @@ AppAsset::register($this);
                     exit;
                 }
                 ?>
-
-
-
     </section>
     <!-- /.content -->
   </div>
