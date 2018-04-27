@@ -4,15 +4,14 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 ?>
 <div class="login-form">
-    <label>&nbsp;</label>
-    <h4>Đăng ký thông tin khách hàng</h4>
     
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
     ]); ?>
-        
-
-    <div class="row">
+    <div class="container">
+        <label>&nbsp;</label>
+        <center><h4>Đăng ký thông tin khách hàng</h4></center>
+        <div class="row">
         <div class="span6">
             <div class="form-group">
             <label>User Name</label>
@@ -57,8 +56,8 @@ use yii\bootstrap\ActiveForm;
     <div class="register-link m-t-15 text-center">
         <p>Có tài khoản ? <a href="login">Đăng nhập</a></p>
     </div>
+    </div>
 
 <?php ActiveForm::end(); ?>
-
 
 </div>

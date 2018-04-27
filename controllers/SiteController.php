@@ -161,7 +161,20 @@ class SiteController extends Controller
      public function actionRegister()
     {
         $this->layout = 'layout-user';
-        
+        $post = Yii::$app->request->post();
+        $user = new User();
+        if ($user->idLogged()) {
+            return $this->goHome();
+        }
+       
+        if(isset($post['register']) && $post['register'] == 1){
+            $this->layout = 0;
+            $users = new User();
+            $users->beforeSaveUser($post['Users']);
+            $users->validate();
+            $users->save();
+            return $this->redirect('login');
+        }
         return $this->render('register');
     }
 }
