@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Product;
 use app\models\Type;
+use app\models\ImageProduct;
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
 /* @var $form yii\widgets\ActiveForm */
@@ -31,14 +32,16 @@ $type = new Type();
 
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
 
-    <div class="form-group" id="them">
+    <?php echo $form->field($modelImage, 'link')->fileInput(); ?>
+
+    <!-- <div class="form-group" id="them">
         <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addButton()" class="btn btn-primary">Thêm</button></p>
         <div class="btn-group">
             <input type="file"  name="Product[link]" class="btn btn-default" id="exampleInputFile">
             
             <button type="button" onclick="deleteButton()" class="btn btn-danger">Xoá</button>
         </div>
-    </div>
+    </div> -->
 
 
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
