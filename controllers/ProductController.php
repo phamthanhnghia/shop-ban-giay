@@ -86,15 +86,28 @@ class ProductController extends Controller
             // die;
             if(UploadedFile::getInstance($modelImage, 'link'))
             {
-                $modelImage->id_product = $model->id;
-                // $modelImage->save();
+                //$modelImage->id_product = $model->id;
+                //$modelImage->save();
                 $productId = $model->id;
-                $imageId = $modelImage->id;
+                //$imageId = $modelImage->id;
                 $image = UploadedFile::getInstance($modelImage, 'link');
-                $imgName = '[giay]'.$productId.$imageId.'.'.$image->getExtension();
+                $imgName = 'giay'.$productId.'.'.$image->getExtension();
                 $image->saveAs($this->getStoreToSave().'/'.$imgName);
-                $modelImage->link = $imgName;
+                $modelImage->attributes = array('id_product' => $model->id, 'link' => $imgName, );
+                //
+                // $modelImage->id_product = $model->id;
+                //$modelImage->link = $imgName;
+                // $modelImage->link = $imgName;
+
+                // echo "<pre>";
+                // print_r($modelImage->attributes);
+                // echo "</pre>";
+                // die;
                 $modelImage->save();
+                //  echo "<pre>";
+                // print_r($modelImage);
+                // echo "</pre>";
+                // die;
             }
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -157,6 +170,10 @@ class ProductController extends Controller
      */
     public function actionDelete($id)
     {
+        $ImageProduct = ImageProduct::find()->where(['id_product' => $id])->all();
+        foreach ($ImageProduct as $key) {
+            $key->delete();
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
