@@ -35,6 +35,7 @@ class DiscountProductController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'theme-admin';
         $searchModel = new DiscountProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +53,7 @@ class DiscountProductController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'theme-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,9 +66,12 @@ class DiscountProductController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'theme-admin';
         $model = new DiscountProduct();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->formatSave();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -84,9 +89,12 @@ class DiscountProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'theme-admin';
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->formatSave();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

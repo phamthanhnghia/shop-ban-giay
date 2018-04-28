@@ -33,7 +33,7 @@ class DiscountProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['info', 'type', 'discount', 'created_date', 'id_product'], 'required'],
+            [['info', 'type', 'discount', 'id_product'], 'required'],
             [['type', 'discount', 'status', 'id_product'], 'integer'],
             [['created_date'], 'safe'],
             [['info'], 'string', 'max' => 100],
@@ -48,12 +48,12 @@ class DiscountProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'info' => 'Info',
-            'type' => '1: giảm phần trăm - 2: giảm tiền',
-            'discount' => 'Discount',
-            'status' => '0: ko đùng - 1 : còn áp dụng',
-            'created_date' => 'Created Date',
-            'id_product' => 'Id Product',
+            'info' => 'Thông tin',
+            'type' => 'Loại',
+            'discount' => 'Giảm',
+            'status' => 'Trạng thái',
+            'created_date' => 'Ngày tạo',
+            'id_product' => 'Sản phẩm',
         ];
     }
 
@@ -63,5 +63,23 @@ class DiscountProduct extends \yii\db\ActiveRecord
     public function getProduct()
     {
         return $this->hasOne(Product::className(), ['id' => 'id_product']);
+    }
+
+            
+    public function getArrayStatus(){
+        return [
+            '0' => 'Không áp dụng',
+            '1' => 'Còn áp dụng',
+        ];
+    }
+    public function getArrayType(){
+        return [
+            '1' => 'Giảm phần trăm',
+            '2' => 'Giảm tiền',
+        ];
+    }
+    public function formatSave(){
+        $format = "Y-m-d h:m:s";
+        $this->created_date = date($format);
     }
 }
