@@ -232,6 +232,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
         return false;
     }
+
+    
     
     public static function CreateMessage($typemessage, $info){
         $_SESSION['message'][$typemessage] = $info;

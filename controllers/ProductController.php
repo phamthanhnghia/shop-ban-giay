@@ -36,14 +36,10 @@ class ProductController extends Controller
      */
     public function actionIndex()
     {
-//        $dataProvider = new ActiveDataProvider([
-//            'query' => Product::find(),
-//        ]);
 
         $this->layout = 'theme-admin';
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -59,8 +55,12 @@ class ProductController extends Controller
     public function actionView($id)
     {
         $this->layout = 'theme-admin';
+        $modelImage = new ImageProduct();
+        $modelImage = ImageProduct::find()->where(['id_product' => $id])->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelImage'=> $modelImage,
         ]);
     }
 
