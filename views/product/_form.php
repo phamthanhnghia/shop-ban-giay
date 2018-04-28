@@ -32,8 +32,19 @@ $type = new Type();
 
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
 
-    <?php echo $form->field($modelImage, 'link')->fileInput(); ?>
 
+
+    <?php 
+        if(empty($modelImage)){
+            echo $form->field($modelImage, 'link')->fileInput(); 
+        }else{
+            $Image = (array)$modelImage[0]->attributes;
+            echo '<img width="200" height="200" src="../../images/product-images/'.$Image['link'].'">';
+            $modelImage = new ImageProduct();
+            echo $form->field($modelImage, 'link')->fileInput(); 
+        }
+    ?>
+    
     <!-- <div class="form-group" id="them">
         <p><label>Hình ảnh &nbsp; &nbsp; </label><button type="button" onclick="addButton()" class="btn btn-primary">Thêm</button></p>
         <div class="btn-group">

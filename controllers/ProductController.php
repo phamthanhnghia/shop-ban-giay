@@ -86,18 +86,13 @@ class ProductController extends Controller
             // die;
             if(UploadedFile::getInstance($modelImage, 'link'))
             {
-                //$modelImage->id_product = $model->id;
-                //$modelImage->save();
+
                 $productId = $model->id;
-                //$imageId = $modelImage->id;
                 $image = UploadedFile::getInstance($modelImage, 'link');
                 $imgName = 'giay'.$productId.'.'.$image->getExtension();
                 $image->saveAs($this->getStoreToSave().'/'.$imgName);
                 $modelImage->attributes = array('id_product' => $model->id, 'link' => $imgName, );
-                //
-                // $modelImage->id_product = $model->id;
-                //$modelImage->link = $imgName;
-                // $modelImage->link = $imgName;
+               
 
                 // echo "<pre>";
                 // print_r($modelImage->attributes);
@@ -142,18 +137,17 @@ class ProductController extends Controller
             // die;
             if(UploadedFile::getInstance($modelImage, 'link'))
             {
-                $modelImage->id_product = $model->id;
-                // $modelImage->save();
                 $productId = $model->id;
-                $imageId = $modelImage->id;
                 $image = UploadedFile::getInstance($modelImage, 'link');
-                $imgName = '[giay]'.$productId.$imageId.'.'.$image->getExtension();
+                $imgName = 'giay'.$productId.'.'.$image->getExtension();
                 $image->saveAs($this->getStoreToSave().'/'.$imgName);
-                $modelImage->link = $imgName;
+                $modelImage->attributes = array('id_product' => $model->id, 'link' => $imgName, );
                 $modelImage->save();
             }
             return $this->redirect(['view', 'id' => $model->id]);
         }
+        $modelImage = ImageProduct::find()->where(['id_product' => $id])->all();
+
 
         return $this->render('update', [
             'model' => $model,
