@@ -12,6 +12,7 @@ use app\assets\AppAsset;
 use app\models\User;
 
 AppAsset::register($this);
+$user = new User();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -91,7 +92,7 @@ AppAsset::register($this);
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="dist/img/user.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -277,18 +278,30 @@ AppAsset::register($this);
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/img/user2-160x160.jpg' ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <img src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/img/user.jpg' ?>" class="user-image" alt="User Image">
+              <?php if(isset($_SESSION['ID_USER'])): ?> 
+              <span class="hidden-xs">
+                <?php
+                $users = User::findUsersById($_SESSION['ID_USER']);
+                echo $users->name;
+                ?>
+              </span>
+            <?php endif; ?>
+
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/img/user2-160x160.jpg' ?>" class="img-circle" alt="User Image">
-
+                <img src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/img/user.jpg' ?>" class="img-circle" alt="User Image">
+                <?php if(isset($_SESSION['ID_USER'])): ?>
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                   <?php
+                    $users = User::findUsersById($_SESSION['ID_USER']);
+                    echo $users->name;
+                    ?>
+                  <small></small>
                 </p>
+                <?php endif; ?>
               </li>
               <!-- Menu Body -->
               <li class="user-body">
@@ -331,10 +344,17 @@ AppAsset::register($this);
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/img/user2-160x160.jpg' ?>" class="img-circle" alt="User Image">
+          <img src="<?php echo Yii::$app->homeUrl.'theme-admin-assets/dist/img/user.jpg' ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <?php if(isset($_SESSION['ID_USER'])): ?>
+              <p>
+                 <?php
+                  $users = User::findUsersById($_SESSION['ID_USER']);
+                  echo $users->name;
+                  ?>
+              </p>
+          <?php endif; ?>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -364,44 +384,36 @@ AppAsset::register($this);
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
+        <li >
+          <a href="../..">
             <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
+            <span>Trang bán hàng</span>
+            
           </a>
-          <ul class="treeview-menu">
+          <!-- <ul class="treeview-menu">
             <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
             <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
             <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
             <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-          </ul>
+          </ul> -->
         </li>
+        
         <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
+          <a href="../../type"><i class="fa fa-th"></i> 
+          <span>Loại Sản phẩm</span>
+          <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
-            </span>
+          </span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
+
+        <li>
+          <a href="../../discount-product">
             <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <span>Khuyến mãi</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-          </ul>
         </li>
+        
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -532,7 +544,7 @@ AppAsset::register($this);
 
       <?= Alert::widget() ?>
       <?php
-                $user = new User();
+                
                 if($user->idLogged() ){
                     echo $content;
                 }
