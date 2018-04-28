@@ -22,7 +22,7 @@ class Product extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public $link;
+    //public $link;
     
     public static function tableName()
     {
@@ -59,6 +59,38 @@ class Product extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Trạng thái'),
             'id_type' => Yii::t('app', 'Loại'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBillDetails()
+    {
+        return $this->hasMany(BillDetail::className(), ['id_product' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDiscountProducts()
+    {
+        return $this->hasMany(DiscountProduct::className(), ['id_product' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImageProducts()
+    {
+        return $this->hasMany(ImageProduct::className(), ['id_product' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType()
+    {
+        return $this->hasOne(Type::className(), ['id' => 'id_type']);
     }
     
     public function getRender()
