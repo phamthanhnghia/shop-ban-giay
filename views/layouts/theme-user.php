@@ -101,13 +101,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <div class="well well-lg offer-box text-center">
-
-
-                   Today's Offer : &nbsp; <span class="glyphicon glyphicon-cog"></span>&nbsp;40 % off  on purchase of $ 2,000 and above till 24 dec !                
-              
-               
-                </div>
+                
                 <div class="main box-border">
                     <div id="mi-slider" class="mi-slider">
                         <ul>
