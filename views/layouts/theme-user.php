@@ -101,7 +101,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                
                 <div class="main box-border">
                     <div id="mi-slider" class="mi-slider">
                         <ul>
