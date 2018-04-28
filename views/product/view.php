@@ -39,5 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id_type',
         ],
     ]) ?>
+    <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+    
+    <?php 
+        if(!empty($modelImage)){
+            $Image = (array)$modelImage[0]->attributes;
+            echo '<img width="200" height="200" src="../../images/product-images/'.$Image['link'].'">';
+        }
+    ?>
 
 </div>
