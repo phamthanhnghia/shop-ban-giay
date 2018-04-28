@@ -35,6 +35,7 @@ class TypeController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'theme-admin';
         $searchModel = new TypeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +53,7 @@ class TypeController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'theme-admin';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,13 +66,14 @@ class TypeController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'theme-admin';
         $model = new Type();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            echo '<pre>';
-            print_r(Yii::$app->request->post());
-            echo '</pre>';
-            die;
+            // echo '<pre>';
+            // print_r(Yii::$app->request->post());
+            // echo '</pre>';
+            // die;
             return $this->redirect(['view', 'id' => $model->id]);
         }
         return $this->render('create', [
@@ -87,6 +90,7 @@ class TypeController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'theme-admin';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
