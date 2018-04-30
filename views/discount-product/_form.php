@@ -3,10 +3,13 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\DiscountProduct;
+use app\models\Product;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\DiscountProduct */
 /* @var $form yii\widgets\ActiveForm */
 $discount = new DiscountProduct();
+$product = new Product();
 ?>
 
 <div class="discount-product-form">
@@ -21,7 +24,7 @@ $discount = new DiscountProduct();
 
     <?= $form->field($model, 'status')->dropDownList($discount->getArrayStatus()) ?>
 
-    <?= $form->field($model, 'id_product')->textInput() ?>
+    <?= $form->field($model, 'id_product')->dropDownList($product->getArrayProduct()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
