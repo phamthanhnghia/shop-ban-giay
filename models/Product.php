@@ -110,4 +110,13 @@ class Product extends \yii\db\ActiveRecord
         $format = "Y-m-d h:m:s";
         $this->created_date = date($format);
     }
+
+    public function getArrayProduct(){
+        $variable = Product::find()->all();
+        $result = [];
+        foreach ($variable as $key ) {
+            $result[$key->id] = " Mã : ". $key->code . " - Tên : ". $key->name  ; 
+        }
+        return $result;
+    }
 }
