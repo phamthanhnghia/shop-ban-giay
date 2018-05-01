@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\DiscountProduct;
+use app\models\Product;
 /* @var $this yii\web\View */
 /* @var $searchModel app\controllers\DiscountProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -34,7 +35,6 @@ $Astatus = $discount->getArrayStatus();
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'info',
             [
                 'label' => 'Loại',
@@ -51,6 +51,14 @@ $Astatus = $discount->getArrayStatus();
                     $discount = new DiscountProduct();
                     $Astatus = $discount->getArrayStatus();
                     return $Astatus[$model->status];
+                }
+            ],
+            [ 
+                'label' => 'Sản phẩm',
+                'value' => function ($model) {
+                    $product = new Product();
+                    $Aproduct = $product->getArrayProduct();
+                    return $Aproduct[$model->id_product];
                 }
             ],
             //'id_product',

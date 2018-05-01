@@ -7,7 +7,7 @@ use app\models\DiscountProduct;
 /* @var $this yii\web\View */
 /* @var $model app\models\DiscountProduct */
 
-$this->title = $model->id;
+$this->title = $model->info;
 $this->params['breadcrumbs'][] = ['label' => 'Discount Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

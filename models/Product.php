@@ -115,7 +115,7 @@ class Product extends \yii\db\ActiveRecord
         $variable = Product::find()->all();
         $result = [];
         foreach ($variable as $key ) {
-            $result[$key->id] = " Mã : ". $key->code . " - Tên : ". $key->name  ; 
+            $result[$key->id] =  $key->code . " : ". $key->name  ; 
         }
         return $result;
     }
