@@ -119,4 +119,14 @@ class Product extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    public function showProduct(){
+        $variable = Product::find()->all();
+        return $variable;
+    }
+    public function showImage($id){
+        $modelImage = ImageProduct::find()->where(['id_product' => $id])->all();
+        $Image = (array)$modelImage[0]->attributes;
+        return $Image['link'];
+    }
 }
