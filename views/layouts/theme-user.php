@@ -248,9 +248,7 @@
     max-height: 200px;" src="../../images/product-images/<?php echo $product->showImage($key->id)?> ">
                                 <div class="caption">
                                     <h3><a href="#"><?= $key->name ?> </a></h3>
-                                    <p>Price : <strong><?= $key->price ?></strong>  </p>
-                                   
-                                    <p>Ptional dismiss button in tional dismiss button in   </p>
+                                    <p>Price : <strong><?= $key->price ?> Đ</strong>  </p>
                                     <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
                                 </div>
                             </div>
