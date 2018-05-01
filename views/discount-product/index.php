@@ -2,12 +2,20 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\DiscountProduct;
 /* @var $this yii\web\View */
 /* @var $searchModel app\controllers\DiscountProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Discount Products';
 $this->params['breadcrumbs'][] = $this->title;
+
+$discount = new DiscountProduct();
+$Astatus = $discount->getArrayStatus();
+// echo "<pre>";
+//             print_r($Astatus[1]);
+//             echo "</pre>";
+//             die;
 ?>
 <div class="discount-product-index">
 
@@ -28,10 +36,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'info',
-            'type',
+            [
+                'label' => 'Loại',
+                'value' => function($model){
+                    $discount = new DiscountProduct();
+                    $Atype = $discount->getArrayType();
+                    return $Atype[$model->type];
+                }
+            ],
             'discount',
-            'status',
-            //'created_date',
+            [ 
+                'label' => 'Trạng thái',
+                'value' => function ($model) {
+                    $discount = new DiscountProduct();
+                    $Astatus = $discount->getArrayStatus();
+                    return $Astatus[$model->status];
+                }
+            ],
             //'id_product',
 
             ['class' => 'yii\grid\ActionColumn'],
