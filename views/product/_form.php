@@ -35,7 +35,13 @@ $type = new Type();
 
 
     <?php 
-        if(empty($modelImage)){
+
+        // echo "<pre>";
+        // print_r($modelImage);
+        // print_r(in_array('0', $modelImage));
+        // echo "</pre>";
+        //die;
+        if(!is_array($modelImage)){
             echo $form->field($modelImage, 'link')->fileInput(); 
         }else{
             $Image = (array)$modelImage[0]->attributes;
