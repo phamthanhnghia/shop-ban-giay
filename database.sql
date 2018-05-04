@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 03, 2018 lúc 05:34 PM
+-- Thời gian đã tạo: Th5 04, 2018 lúc 02:13 PM
 -- Phiên bản máy phục vụ: 10.1.30-MariaDB
 -- Phiên bản PHP: 7.1.14
 
@@ -63,7 +63,6 @@ CREATE TABLE `discount_product` (
   `id` int(11) NOT NULL,
   `info` varchar(100) NOT NULL,
   `discount` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0: ko đùng - 1 : còn áp dụng',
   `created_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -91,10 +90,12 @@ CREATE TABLE `product` (
   `name` varchar(100) NOT NULL,
   `price` int(11) NOT NULL,
   `gender` tinyint(4) NOT NULL COMMENT '0: nữ - 1: nam',
+  `amount` int(11) DEFAULT NULL COMMENT 'số lượng',
   `created_date` datetime NOT NULL,
   `list_color` varchar(100) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0: không bán - 1: mới - 2 : bình thường',
-  `id_type` int(11) NOT NULL
+  `id_type` int(11) NOT NULL,
+  `id_discount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
