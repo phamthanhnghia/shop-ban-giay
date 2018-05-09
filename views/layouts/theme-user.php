@@ -1,3 +1,19 @@
+<?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use app\widgets\Alert;
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+use app\assets\AppAsset;
+use app\models\User;
+
+AppAsset::register($this);
+$user = new User();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +34,6 @@
     <link href="<?php echo Yii::$app->homeUrl.'assets-theme/css/style.css'?>" rel="stylesheet" />
 </head>
 <body>
-        <?php 
-    use app\models\User;
-    use app\models\Product;
-    ?>
 
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -234,67 +246,11 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    <?php 
-                    $product = new Product();
-                    $var = $product->showProduct();
-                    ?>
-                    <?php foreach ($var as $key): ?> 
-                    
-                        <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                            <div class="thumbnail product-box">
-                                <img style= " height: auto; 
-    width: auto; 
-    max-width: 200px; 
-    max-height: 200px;" src="../../images/product-images/<?php echo $product->showImage($key->id)?> ">
-                                <div class="caption">
-                                    <h3><a href="#"><?= $key->name ?> </a></h3>
-                                    <p>Price : <strong><?= $key->price ?> Đ</strong>  </p>
-                                    <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
 
                     
-                    <!-- /.col -->
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets-theme/img/dummyimg.png" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Samsung Galaxy </a></h3>
-                                <p>Price : <strong>$ 3,45,900</strong>  </p>
-                                <p><a href="#">Ptional dismiss button </a></p>
-                                <p>Ptional dismiss button in tional dismiss button in   </p>
-                                <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets-theme/img/dummyimg.png" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Samsung Galaxy </a></h3>
-                                <p>Price : <strong>$ 3,45,900</strong>  </p>
-                                <p><a href="#">Ptional dismiss button </a></p>
-                                <p>Ptional dismiss button in tional dismiss button in   </p>
-                                <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets-theme/img/dummyimg.png" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Samsung Galaxy </a></h3>
-                                <p>Price : <strong>$ 3,45,900</strong>  </p>
-                                <p><a href="#">Ptional dismiss button </a></p>
-                                <p>Ptional dismiss button in tional dismiss button in   </p>
-                                <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
+                    
                 </div>
                 <!-- /.row -->
                 <div class="row">
