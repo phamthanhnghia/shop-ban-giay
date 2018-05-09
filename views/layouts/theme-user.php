@@ -224,46 +224,14 @@ $user = new User();
                     </ol>
                 </div>
                 <!-- /.div -->
-                <div class="row">
-                    <div class="btn-group alg-right-pad">
-                        <button type="button" class="btn btn-default"><strong>1235  </strong>items</button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                                Sort Products &nbsp;
-      <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">By Price Low</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Price High</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Popularity</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Reviews</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <div class="row">
+                
+                
                     <?= Alert::widget() ?>
                     <?= $content ?>
 
                     
                     
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <ul class="pagination alg-right-pad">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
+                
                 <!-- /.row -->
                 <div>
                     <ol class="breadcrumb">
