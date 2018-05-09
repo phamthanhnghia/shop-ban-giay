@@ -9,6 +9,7 @@
 namespace app\controllers;
  
 use yii\web\Controller;
+use app\models\Product;
  
 class MainController extends Controller
 {
@@ -18,7 +19,13 @@ class MainController extends Controller
     {
         
         $this->layout = 'theme-user';
-        return $this->render('index');
+
+        $product = new Product();
+        $listProduct = $product->showProduct();
+
+        return $this->render('index',[
+        	'listProduct' => $listProduct,
+        ]);
         //echo "hihi";
     }
 }
