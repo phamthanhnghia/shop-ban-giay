@@ -18,7 +18,7 @@ class DiscountProductSearch extends DiscountProduct
     public function rules()
     {
         return [
-            [['id', 'type', 'discount', 'status', 'id_product'], 'integer'],
+            [['id',  'discount'], 'integer'],
             [['info', 'created_date'], 'safe'],
         ];
     }
@@ -60,11 +60,9 @@ class DiscountProductSearch extends DiscountProduct
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'type' => $this->type,
+           
             'discount' => $this->discount,
-            'status' => $this->status,
             'created_date' => $this->created_date,
-            'id_product' => $this->id_product,
         ]);
 
         $query->andFilterWhere(['like', 'info', $this->info]);
