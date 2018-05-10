@@ -5,11 +5,14 @@ use yii\widgets\ActiveForm;
 use app\models\Product;
 use app\models\Type;
 use app\models\ImageProduct;
+use app\models\DiscountProduct;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
 /* @var $form yii\widgets\ActiveForm */
 $product = new Product();
 $type = new Type();
+$discount = new DiscountProduct();
 ?>
 
 <div class="product-form">
@@ -30,9 +33,9 @@ $type = new Type();
 
     <?php echo $form->field($model, 'id_type')->dropDownList($type->FormatArrayType()); ?>
 
+    <?php echo $form->field($model, 'id_discount')->dropDownList($discount->getArrayDiscountProduct()); ?>
+
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
-
-
 
     <?php 
 
