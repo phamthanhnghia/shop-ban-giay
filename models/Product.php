@@ -36,7 +36,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'name', 'price', 'gender', 'created_date', 'list_color', 'id_type'], 'required'],
-            [['price', 'gender', 'status', 'id_type'], 'integer'],
+            [['price', 'gender', 'status', 'id_type','id_discount'], 'integer'],
             [['created_date'], 'safe'],
             [['code'], 'string', 'max' => 20],
             [['name', 'list_color'], 'string', 'max' => 100],
@@ -58,6 +58,7 @@ class Product extends \yii\db\ActiveRecord
             'list_color' => Yii::t('app', 'Màu sắc'),
             'status' => Yii::t('app', 'Trạng thái'),
             'id_type' => Yii::t('app', 'Loại'),
+            'id_discount' => Yii::t('app', 'Giảm giá'),
         ];
     }
 
