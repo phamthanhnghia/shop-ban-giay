@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\DiscountProduct */
 
-$this->title = 'Create Discount Product';
+$this->title = 'Tạo giảm giá';
 $this->params['breadcrumbs'][] = ['label' => 'Discount Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
