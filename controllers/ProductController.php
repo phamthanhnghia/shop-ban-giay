@@ -89,11 +89,11 @@ class ProductController extends Controller
 
                 $productId = $model->id;
                 $image = UploadedFile::getInstance($modelImage, 'link');
-                $imgName = 'giay'.$productId.'.'.$image->getExtension();
+                $imgName = 'giay'.$productId.'.'.$image->getExtension(); // .jpg .png 
                 $image->saveAs($this->getStoreToSave().'/'.$imgName);
                 $modelImage->attributes = array('id_product' => $model->id, 'link' => $imgName, );
                
-
+                
                 // echo "<pre>";
                 // print_r($modelImage->attributes);
                 // echo "</pre>";
