@@ -8,15 +8,11 @@ use app\models\Product;
 /* @var $searchModel app\controllers\DiscountProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Discount Products';
+$this->title = 'Giảm giá sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 
 $discount = new DiscountProduct();
-$Astatus = $discount->getArrayStatus();
-// echo "<pre>";
-//             print_r($Astatus[1]);
-//             echo "</pre>";
-//             die;
+
 ?>
 <div class="discount-product-index">
 
@@ -26,7 +22,7 @@ $Astatus = $discount->getArrayStatus();
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Discount Product', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Tạo giảm giá', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -36,31 +32,8 @@ $Astatus = $discount->getArrayStatus();
             ['class' => 'yii\grid\SerialColumn'],
 
             'info',
-            [
-                'label' => 'Loại',
-                'value' => function($model){
-                    $discount = new DiscountProduct();
-                    $Atype = $discount->getArrayType();
-                    return $Atype[$model->type];
-                }
-            ],
             'discount',
-            [ 
-                'label' => 'Trạng thái',
-                'value' => function ($model) {
-                    $discount = new DiscountProduct();
-                    $Astatus = $discount->getArrayStatus();
-                    return $Astatus[$model->status];
-                }
-            ],
-            [ 
-                'label' => 'Sản phẩm',
-                'value' => function ($model) {
-                    $product = new Product();
-                    $Aproduct = $product->getArrayProduct();
-                    return $Aproduct[$model->id_product];
-                }
-            ],
+            
             //'id_product',
 
             ['class' => 'yii\grid\ActionColumn'],
