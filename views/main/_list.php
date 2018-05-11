@@ -1,7 +1,6 @@
  
  <?php 
 use app\models\Product;
-use yii\base\Configurable;
 use yii\widgets\LinkPager;
    $product = new Product();
  ?>
@@ -37,7 +36,7 @@ use yii\widgets\LinkPager;
 	            <div class="caption">
                     <small><?= $key->code ?></small>
 	                <h3><a href="#"><?= $key->name ?> </a></h3>
-	                <p>Giá : <strong><?= $key->price ?> VNĐ</strong>  </p>
+	                <p>Giá : <strong><?= number_format($key->price) ?> VNĐ</strong>  </p>
 	                <p><a href="#" class="btn btn-success" role="button">Thêm vào giỏ </a> <a href="../../main/detail?id=<?php echo $key->id; ?>" class="btn btn-primary" role="button">Xem chi tiết</a></p>
 	            </div>
 	        </div>
