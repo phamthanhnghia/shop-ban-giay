@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use app\models\Type;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Products';
+$this->title = 'Sản phẩm';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-index">
@@ -26,12 +26,26 @@ $this->params['breadcrumbs'][] = $this->title;
             //id',
             'code',
             'name',
-            'price',
-            'gender',
+            [
+                'label' => 'Giá',
+                'value' => function($model){ 
+                         return $model->price . " VNĐ";
+                        },
+            ],
+            //'price',
+            //'gender',
+            
             //'created_date',
             //'list_color',
-            'status',
-            //'id_type',
+            // 'status',
+            [
+                'label' => 'Loại',
+                'value' => function($model){ 
+                        $type = new Type();
+                         return $type->getIdType($model->id_type)->name;
+                        },
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

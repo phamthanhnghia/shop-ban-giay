@@ -24,7 +24,9 @@ $discount = new DiscountProduct();
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?php  echo $form->field($model, 'price')->textInput(); ?>
-
+    
+    <?php  echo $form->field($model, 'amount')->textInput(); ?>
+    
     <?php echo $form->field($model, 'gender')->radioList($product->getRender()); ?>
 
     <?= $form->field($model, 'list_color')->textInput(['maxlength' => true]) ?>
@@ -43,7 +45,7 @@ $discount = new DiscountProduct();
         // print_r($modelImage);
         // print_r(in_array('0', $modelImage));
         // echo "</pre>";
-        //die;
+        // die;
         if(!is_array($modelImage)){
             echo $form->field($modelImage, 'link')->fileInput(); 
         }else{
