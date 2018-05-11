@@ -40,11 +40,9 @@ class MainController extends Controller
     public function actionDetail($id)
     {
     	 $this->layout = 'layout-user';
-        $modelImage = ImageProduct::find()->where(['id_product' => $id])->all();
         $model = Product::find()->where(['id' => $id])->all();
         return $this->render('detail/index', [
             'model' => $model,
-            'modelImage'=> $modelImage,
         ]);
     }
 }
