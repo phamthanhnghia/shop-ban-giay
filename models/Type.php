@@ -31,7 +31,7 @@ class Type extends \yii\db\ActiveRecord
 
     public function getIdType($id)
     {
-        return Type::find(['id'=>$id])->one();
+        return Type::find()->where(['id'=>$id])->one();
     }
 
     /**
@@ -102,4 +102,6 @@ class Type extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    
 }
