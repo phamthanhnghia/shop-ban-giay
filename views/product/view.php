@@ -36,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_date',
             'list_color',
             'status',
-            //'id_type',
+            'id_type',
+            //'amount',
         ],
     ]) ?>
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
