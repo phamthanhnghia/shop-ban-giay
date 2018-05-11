@@ -37,7 +37,7 @@ use yii\widgets\LinkPager;
                     <small><?= $key->code ?></small>
 	                <h3><a href="#"><?= $key->name ?> </a></h3>
 	                <p>Giá : <strong><?= number_format($key->price) ?> VNĐ</strong>  </p>
-	                <p><a href="#" class="btn btn-success" role="button">Thêm vào giỏ </a> <a href="../../main/detail?id=<?php echo $key->id; ?>" class="btn btn-primary" role="button">Xem chi tiết</a></p>
+	                <p><button class="btn btn-success" >Thêm vào giỏ </button> <a href="../../main/detail?id=<?php echo $key->id; ?>" class="btn btn-primary" role="button">Xem chi tiết</a></p>
 	            </div>
 	        </div>
 	    </div>
@@ -49,3 +49,20 @@ echo LinkPager::widget([
     'pagination' => $pages,
 ]);
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $("button").click(function(){
+        $.ajax({
+               url: '<?php echo Yii::$app->request->baseUrl. '/product/test' ?>',
+               type: 'post',
+               data: {
+                         
+                         _csrf : '<?=Yii::$app->request->getCsrfToken()?>',
+                         nghia : "sđfsd"
+                     },
+               success: function (data) {
+                  console.log(data.code);
+               }
+          });
+        });
+</script>

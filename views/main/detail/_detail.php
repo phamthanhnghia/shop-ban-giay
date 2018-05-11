@@ -1,9 +1,16 @@
 <?php
-$model = $model[0]->attributes;
-echo "<pre>";
-            print_r($model);
-            echo "</pre>";
-            die;
+
+use app\models\Product;
+use app\models\Type;
+
+   $product = new Product();
+$model = $model[0];
+$type = new Type();
+$type = $type->getIdType($model->id_type);
+// echo "<pre>";
+//             print_r($type);
+//             echo "</pre>";
+//             die;
 ?>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,13 +22,13 @@ echo "<pre>";
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane active" id="pic-1"><img src="../../images/product-images/<?php echo $product->showImage($model->id)?> " /></div>
 						  
 						</div>
 						
 					</div>
 					<div class="details col-md-6">
-						<h3 class="product-title"><?= $model['name'] ?></h3>
+						<h3 class="product-title"><?= $model->name ?></h3>
 						<div class="rating">
 							<div class="stars">
 								<span class="fa fa-star checked"></span>
@@ -30,24 +37,30 @@ echo "<pre>";
 								<span class="fa fa-star"></span>
 								<span class="fa fa-star"></span>
 							</div>
-							<span class="review-no">41 reviews</span>
+							<span class="review-no">Mã sản phẩm : <?= $model->code ?></span>
 						</div>
-						<p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-						<h4 class="price">current price: <span>$180</span></h4>
-						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-						<h5 class="sizes">sizes:
-							<span class="size" data-toggle="tooltip" title="small">s</span>
-							<span class="size" data-toggle="tooltip" title="medium">m</span>
-							<span class="size" data-toggle="tooltip" title="large">l</span>
-							<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+						<p class="product-description"> Hunter dòng cơ bản có những thay đổi lớn về họa tiết trên upper (thân giày) giày và ứng dụng một trong những bộ đế bán chạy nhất vào năm 2017.</p>
+						<h4 class="price">Giá hiện tại: <span><?= number_format($model->price) ." VNĐ" ?></span></h4>
+						<p class="vote"><strong>Khuyến mãi</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+						<h5 class="sizes row"> 
+                <div class="col-xs-2">
+                sizes
+                </div>
+                <div class="col-xs-3">
+  							  <select class="form-control" id="sel1">
+                    <?php for($i = $type->size_form;  $i <= $type->size_to ; $i++) { ?>
+                    <option><?= $i?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="col-xs-7">
+                </div>
 						</h5>
-						<h5 class="colors">colors:
-							<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-							<span class="color green"></span>
-							<span class="color blue"></span>
+						<h5 class="colors">
+							
 						</h5>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+							<button class="add-to-cart btn btn-default" type="button">Đặt mua ngay</button>
 							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
 						</div>
 					</div>
@@ -55,6 +68,7 @@ echo "<pre>";
 			</div>
 		</div>
 	</div>
+  <hr>
 <style type="text/css">
 	
 /*****************globals*************/
