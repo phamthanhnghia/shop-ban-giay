@@ -193,4 +193,14 @@ class ProductController extends Controller
       Yii::setAlias('@project', realpath(dirname(__FILE__).'/../'));
       return Yii::getAlias('@project') .'\web\images\product-images';
     }
+
+    public function actionTest()
+    {
+        if (Yii::$app->request->isAjax) {
+            
+            return [
+                'code' => 100,
+            ];
+        }
+    }
 }
