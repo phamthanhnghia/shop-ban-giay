@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          return $model->price . " VNĐ";
                         },
             ],
-            //'price',
+            //'amount',
             //'gender',
             
             //'created_date',
