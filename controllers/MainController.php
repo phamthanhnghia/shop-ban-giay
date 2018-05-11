@@ -10,6 +10,8 @@ namespace app\controllers;
  
 use yii\web\Controller;
 use app\models\Product;
+use yii\data\Pagination;
+use app\models\ImageProduct;
  
 class MainController extends Controller
 {
@@ -20,12 +22,29 @@ class MainController extends Controller
         
         $this->layout = 'theme-user';
 
-        $product = new Product();
-        $listProduct = $product->showProduct();
+         // $product = new Product();
+        $query = Product::find();
+	    $countQuery = $query->count();
+	    $pages = new Pagination(['totalCount' => $countQuery]);
+	    $pages->pageSize= 9;
+	    $models = $query->offset($pages->offset)
+	        ->limit($pages->limit)
+	        ->all();
 
         return $this->render('index',[
-        	'listProduct' => $listProduct,
+        	'listProduct' => $models,
+        	'pages' => $pages,
         ]);
         //echo "hihi";
+    }
+    public function actionDetail($id)
+    {
+    	 $this->layout = 'layout-user';
+        $modelImage = ImageProduct::find()->where(['id_product' => $id])->all();
+        $model = Product::find()->where(['id' => $id])->all();
+        return $this->render('detail/index', [
+            'model' => $model,
+            'modelImage'=> $modelImage,
+        ]);
     }
 }

@@ -1,6 +1,8 @@
  
  <?php 
 use app\models\Product;
+use yii\base\Configurable;
+use yii\widgets\LinkPager;
    $product = new Product();
  ?>
  <div class="row">
@@ -33,23 +35,18 @@ use app\models\Product;
 	max-width: 200px; 
 	max-height: 200px;" src="../../images/product-images/<?php echo $product->showImage($key->id)?> ">
 	            <div class="caption">
+                    <small><?= $key->code ?></small>
 	                <h3><a href="#"><?= $key->name ?> </a></h3>
-	                <p>Price : <strong><?= $key->price ?> Đ</strong>  </p>
-	                <p><a href="#" class="btn btn-success" role="button">Thêm vào giỏ </a> <a href="#" class="btn btn-primary" role="button">Xem chi tiết</a></p>
+	                <p>Giá : <strong><?= $key->price ?> VNĐ</strong>  </p>
+	                <p><a href="#" class="btn btn-success" role="button">Thêm vào giỏ </a> <a href="../../main/detail?id=<?php echo $key->id; ?>" class="btn btn-primary" role="button">Xem chi tiết</a></p>
 	            </div>
 	        </div>
 	    </div>
 	<?php endforeach; ?>
 </div>
 <!-- /.row -->
-<div class="row">
-    <ul class="pagination alg-right-pad">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
-    </ul>
-</div>
+<?php
+echo LinkPager::widget([
+    'pagination' => $pages,
+]);
+?>

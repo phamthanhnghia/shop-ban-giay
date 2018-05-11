@@ -119,7 +119,7 @@ $user = new User();
                         <ul>
 
                             <li><a href="#">
-                                <img src="assets-theme/ItemSlider/images/1.jpg" alt="img01"><h4>Boots</h4>
+                                <img src="../../assets-theme/ItemSlider/images/1.jpg" alt="img01"><h4>Boots</h4>
                             </a></li>
                             <li><a href="#">
                                 <img src="assets-theme/ItemSlider/images/2.jpg" alt="img02"><h4>Oxfords</h4>
@@ -133,7 +133,7 @@ $user = new User();
                         </ul>
                         <ul>
                             <li><a href="#">
-                                <img src="assets-theme/ItemSlider/images/5.jpg" alt="img05"><h4>Belts</h4>
+                                <img src="../../assets-theme/ItemSlider/images/5.jpg" alt="img05"><h4>Belts</h4>
                             </a></li>
                             <li><a href="#">
                                 <img src="assets-theme/ItemSlider/images/6.jpg" alt="img06"><h4>Hats &amp; Caps</h4>
@@ -232,93 +232,7 @@ $user = new User();
                     
                     
                 
-                <!-- /.row -->
-                <div>
-                    <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Clothing</a></li>
-                        <li class="active">Men's Clothing</li>
-                    </ol>
-                </div>
-                <!-- /.div -->
-                <div class="row">
-                    <div class="btn-group alg-right-pad">
-                        <button type="button" class="btn btn-default"><strong>3005  </strong>items</button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                Sort Products &nbsp;
-      <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">By Price Low</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Price High</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Popularity</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Reviews</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets-theme/img/dummyimg.png" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Samsung Galaxy </a></h3>
-                                <p>Price : <strong>$ 3,45,900</strong>  </p>
-                                <p><a href="#">Ptional dismiss button </a></p>
-                                <p>Ptional dismiss button in tional dismiss button in   </p>
-                                <p>
-                                    <a href="#" class="btn btn-success" role="button">Add To Cart</a>
-                                    <a href="#" class="btn btn-primary" role="button">See Details</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets-theme/img/dummyimg.png" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Samsung Galaxy </a></h3>
-                                <p>Price : <strong>$ 3,45,900</strong>  </p>
-                                <p><a href="#">Ptional dismiss button </a></p>
-                                <p>Ptional dismiss button in tional dismiss button in   </p>
-                                <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets-theme/img/dummyimg.png" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Samsung Galaxy </a></h3>
-                                <p>Price : <strong>$ 3,45,900</strong>  </p>
-                                <p><a href="#">Ptional dismiss button </a></p>
-                                <p>Ptional dismiss button in tional dismiss button in   </p>
-                                <p><a href="#" class="btn btn-success" role="button">Add To Cart</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <ul class="pagination alg-right-pad">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                <!-- /.row -->
+                
             </div>
             <!-- /.col -->
         </div>
