@@ -25,7 +25,7 @@ $discount = new DiscountProduct();
 
     <?php  echo $form->field($model, 'price')->textInput(); ?>
     
-    <?php  echo $form->field($model, 'amount')->textInput(); ?>
+    <?php // echo $form->field($model, 'amount')->textInput(); ?>
     
     <?php echo $form->field($model, 'gender')->radioList($product->getRender()); ?>
 
