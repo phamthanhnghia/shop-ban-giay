@@ -21,7 +21,7 @@ $user = new User();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Trang bán hàng trực tuyến của Sơn Tùng's Shop</title>
+    <title>Trang bán hàng trực tuyến của ST's Shop</title>
     <!-- Bootstrap core CSS -->
     <link href="<?php echo Yii::$app->homeUrl.'assets-theme/css/bootstrap.css'?>" rel="stylesheet">
     <!-- Fontawesome core CSS -->
@@ -45,7 +45,7 @@ $user = new User();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>Sơn Tùng's</strong> Shop</a>
+                <a class="navbar-brand" href="../.."><strong>ST's</strong> Shop</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

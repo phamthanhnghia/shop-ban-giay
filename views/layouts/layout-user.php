@@ -22,7 +22,7 @@ AppAsset::register($this);
     <meta name="description" content="">
     <meta name="author" content="">
     <?= Html::csrfMetaTags() ?>
-    <title>Bootstrap E-Commerce Template- DIGI Shop mini</title>
+    <title>Trang bán hàng trực tuyến của ST's Shop</title>
     <!-- Bootstrap core CSS -->
     <link href="<?php echo Yii::$app->homeUrl.'assets-theme/css/bootstrap.css'?>" rel="stylesheet">
     <!-- Fontawesome core CSS -->
@@ -46,7 +46,7 @@ AppAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>DIGI</strong> Shop</a>
+                <a class="navbar-brand" href="../.."><strong>ST's</strong> Shop</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@ AppAsset::register($this);
                             
     <!-- /.col -->
     <div class="col-md-12 end-box ">
-        &copy; 2014 | &nbsp; All Rights Reserved | &nbsp; www.yourdomain.com | &nbsp; 24x7 support | &nbsp; Email us: info@yourdomain.com
+       
     </div>
     <!-- /.col -->
     <!--Footer end -->
