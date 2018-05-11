@@ -130,4 +130,11 @@ class Product extends \yii\db\ActiveRecord
         $Image = (array)$modelImage[0]->attributes;
         return $Image['link'];
     }
+
+    // public function getTypeName(){
+    //     $type = new Type();
+       
+    //     return "sdsa";
+    //     //return $this->getType()->name;
+    // }
 }
