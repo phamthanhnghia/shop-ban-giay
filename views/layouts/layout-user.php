@@ -53,6 +53,7 @@ AppAsset::register($this);
     <!--Slider JavaScript file  -->
     <script src="<?php echo Yii::$app->homeUrl.'assets-theme/ItemSlider/js/modernizr.custom.63321.js'?>"></script>
     <script src="<?php echo Yii::$app->homeUrl.'assets-theme/ItemSlider/js/jquery.catslider.js'?>"></script>
+
     <script>
         $(function () {
 

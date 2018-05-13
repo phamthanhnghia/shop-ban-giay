@@ -1,5 +1,7 @@
 <?php 
 use app\models\User;
+use app\models\Product;
+$product = new Product();
 ?>
 <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -49,19 +51,9 @@ use app\models\User;
 
 
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Infomation <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
-                            <li><a href="#"><strong>Mail: </strong>info@yourdomain.com</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><strong>Address: </strong>
-                                <div>
-                                    234, New york Street,<br />
-                                    Just Location, USA
-                                </div>
-                            </a></li>
-                        </ul>
+                    <li >
+                        <a href="#" data-toggle="modal" data-target="#myModal" onclick="getBasket()" >Giỏ hàng </a>
+                        
                     </li>
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
@@ -76,3 +68,44 @@ use app\models\User;
         </div>
         <!-- /.container-fluid -->
     </nav>
+
+
+
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Thông tin giỏ hàng của bạn</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+            
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+    var data = [];
+    function getBasket(){
+        data = JSON.parse(' <?php $product->getBasket(); ?>');
+        // data.foreach(function(value, index, array){
+        //     console.log(index);
+        // });
+        // for (var i = Things.length - 1; i >= 0; i--) {
+        //     Things[i]
+        // }
+        console.log(data);
+        console.log(data.length);
+    }
+</script>
