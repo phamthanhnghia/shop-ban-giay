@@ -131,10 +131,18 @@ class Product extends \yii\db\ActiveRecord
         return $Image['link'];
     }
 
-    // public function getTypeName(){
-    //     $type = new Type();
-       
-    //     return "sdsa";
-    //     //return $this->getType()->name;
-    // }
+    public function getBasket(){
+        
+       // echo "<pre>";
+       //  print_r(json_encode($_SESSION['basket']));
+       //  echo "</pre>";
+       //  die;
+
+        echo json_encode($_SESSION['basket']);
+        //printf($_SESSION['basket']);
+        //return $this->getType()->name;
+    }
+    public function getProductName($id){
+        echo Product::findIdentity($id)->name;
+    }
 }

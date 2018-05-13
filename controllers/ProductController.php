@@ -194,13 +194,60 @@ class ProductController extends Controller
       return Yii::getAlias('@project') .'\web\images\product-images';
     }
 
+    
+    //
+    public function actionAddBasket()
+    {
+        $this->doAddBasket();
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'success' => '1',
+        ];
+    }
+
+    public function doAddBasket(){ // tạo giỏ hàng
+        try {
+            if(empty($_SESSION['basket'])){
+                $_SESSION['basket'] = array($_POST['id'] => 1);
+            }else{
+                $aBasket = $_SESSION['basket'];
+                
+                if(!empty($aBasket[$_POST['id']])){
+                    $mun = $aBasket[$_POST['id']];
+                    $mun++;
+                    $aBasket[$_POST['id']] = $mun;
+                        $_SESSION['basket'] = $aBasket ;
+                    
+                }else{
+                    $aBasket = $_SESSION['basket'];
+                    $aBasket[$_POST['id']] =  1 ;
+                    $_SESSION['basket'] = $aBasket ;
+                }
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        
+        
+    }
+
+    //
     public function actionTest()
     {
-        if (Yii::$app->request->isAjax) {
-            
-            return [
-                'code' => 100,
-            ];
-        }
+        // unset($_SESSION['basket']);
+        echo "<pre>";
+        print_r($_SESSION['basket']);
+        echo "</pre>";
+        die;
+        // echo "<pre>";
+        //     print_r($_POST);
+        //     echo "</pre>";
+        //     \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        // return [
+        //     //'_csrf' => Yii::$app->request->getCsrfToken(),
+        //     'code' => '100',
+        //     'data' => 'ahihi',
+        // ];
     }
+
 }
