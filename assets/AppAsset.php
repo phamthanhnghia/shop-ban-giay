@@ -23,6 +23,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'bootstrap-notify/bootstrap-notify.js',
+        'bootstrap-growl/jquery.bootstrap-growl.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
