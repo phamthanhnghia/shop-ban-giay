@@ -278,4 +278,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
         
     }
+
+    public function setInterval($f, $milliseconds){
+        $seconds=(int)$milliseconds/1000;
+        while(true)
+        {
+            $f();
+            sleep($seconds);
+        }
+    }
 }
