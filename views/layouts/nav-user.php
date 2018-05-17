@@ -52,7 +52,7 @@ $product = new Product();
 
 
                     <li >
-                        <a href="#" data-toggle="modal" data-target="#myModal" onclick="getBasket()" >Giỏ hàng </a>
+                        <a href="../../main/basket" >Giỏ hàng </a>
                         
                     </li>
                 </ul>
@@ -73,17 +73,16 @@ $product = new Product();
 
 
 
-<div id="myModal" class="modal fade" role="dialog">
+<!-- <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Thông tin giỏ hàng của bạn</h4>
       </div>
       <div class="modal-body">
-        <p>
+        <p id='basket'>
             
         </p>
       </div>
@@ -93,18 +92,19 @@ $product = new Product();
     </div>
 
   </div>
-</div>
+</div> -->
 
 <script type="text/javascript">
     var data = [];
     function getBasket(){
         data = JSON.parse(' <?php $product->getBasket(); ?>');
-        // data.foreach(function(value, index, array){
-        //     console.log(index);
-        // });
-        // for (var i = Things.length - 1; i >= 0; i--) {
-        //     Things[i]
-        // }
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            html = html + (data[i].id) +" : "+data[i].amount  + "<br>";
+        }
+        document.getElementById("basket").innerHTML = "";
+        document.getElementById("basket").innerHTML = html;
+        console.log(html);
         console.log(data);
         console.log(data.length);
     }
