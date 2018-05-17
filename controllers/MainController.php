@@ -45,4 +45,10 @@ class MainController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionBasket()
+    {
+        $this->layout = 'layout-user';
+        return $this->render('basket/index');
+    }
 }
