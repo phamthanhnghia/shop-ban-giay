@@ -137,12 +137,59 @@ class Product extends \yii\db\ActiveRecord
        //  print_r(json_encode($_SESSION['basket']));
        //  echo "</pre>";
        //  die;
+        
+        if(isset($_SESSION['basket'])){
+            $aBasket = $_SESSION['basket'];
+            $aResult = $this->convertArrayBasket($aBasket);
+            echo json_encode($aResult);
+        }
 
-        echo json_encode($_SESSION['basket']);
         //printf($_SESSION['basket']);
         //return $this->getType()->name;
     }
     public function getProductName($id){
         echo Product::findIdentity($id)->name;
     }
+    public function convertArrayBasket($aBasket){
+        $aResult = array();
+        foreach ($aBasket as $key => $value) {
+            $aResult[] = ['id' => $key, 
+                        'amount' => $value];
+        }
+        return $aResult;
+    }
+
+    public function showProductOnBasket(){
+        $product = new Product();
+        if(isset($_SESSION['basket'])){
+            $aBasket = $_SESSION['basket'];
+            foreach ($aBasket as $key => $value) {
+                 $product =  $data = Product::findOne(['id' => $key]);
+                ?>
+                <tr id="<?php echo $key."tr"; ?>" >
+                    <td class="col-sm-8 col-md-6">
+                    <div class="media">
+                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="../../images/product-images/<?php echo $product->showImage($key) ?> " style="width: 72px; height: 72px;"> </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="#"><?php echo $product->name; ?></a></h4>
+                            <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                            <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                        </div>
+                    </div></td>
+                    <td class="col-sm-1 col-md-1" style="text-align: center">
+                    <input type="id" name="id" class="form-control" style="display: none;" id="exampleInputEmail1" value="<?php echo $key; ?>">
+                    <input type="number" name="soluong" onchange="changeNumber(this.value,<?php echo $key; ?>,<?php echo $product->price; ?>)" class="form-control" id="exampleInputEmail1" value="<?php echo $value; ?>">
+                    </td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong><?= number_format($product->price) ?> VNĐ</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong id="<?php echo $key."thanhtien"; ?>"><?= number_format($product->price * $value) ?> VNĐ</strong></td>
+                    <td class="col-sm-1 col-md-1">
+                    <button type="button" class="btn btn-danger" onclick="removeTr(<?php echo $key; ?>)">
+                        <span class="glyphicon glyphicon-remove" ></span> Xoá sản phẩm
+                    </button></td>
+                </tr>
+                <?php
+            }
+        }
+    }
 }
+?>
