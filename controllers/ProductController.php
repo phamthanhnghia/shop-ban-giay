@@ -198,13 +198,31 @@ class ProductController extends Controller
     //
     public function actionAddBasket()
     {
+        
         $this->doAddBasket();
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return [
             'success' => '1',
         ];
     }
+    //
+    public function  actionRemoveIdBasket(){
+        $this->removeIdBasket();
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'success' => '1',
+        ];
+    }
 
+    public function removeIdBasket(){
+        try {
+                $aBasket = $_SESSION['basket'];
+                unset($aBasket[$_POST['id']]);
+                $_SESSION['basket'] = $aBasket ;
+            } catch (Exception $e) {
+                echo $e;
+            }
+    }
     public function doAddBasket(){ // tạo giỏ hàng
         try {
             if(empty($_SESSION['basket'])){
@@ -235,10 +253,12 @@ class ProductController extends Controller
     public function actionTest()
     {
         // unset($_SESSION['basket']);
-        echo "<pre>";
-        print_r($_SESSION['basket']);
-        echo "</pre>";
-        die;
+        if(isset($_SESSION['basket'])){
+            echo "<pre>";
+            print_r($_SESSION['basket']);
+            echo "</pre>";
+            die;
+        }
         // echo "<pre>";
         //     print_r($_POST);
         //     echo "</pre>";
