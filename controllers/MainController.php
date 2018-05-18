@@ -12,6 +12,9 @@ use yii\web\Controller;
 use app\models\Product;
 use yii\data\Pagination;
 use app\models\ImageProduct;
+use app\models\User;
+use app\controllers\SiteController;
+
  
 class MainController extends Controller
 {
@@ -48,7 +51,20 @@ class MainController extends Controller
 
     public function actionBasket()
     {
-        $this->layout = 'layout-user';
-        return $this->render('basket/index');
+        if(isset($_SESSION['basket']) && !empty($_SESSION['basket'])){
+             $this->layout = 'layout-user';
+            return $this->render('basket/index');
+        }
+        User::CreateMessage('info','Bạn chưa chọn hàng !');
+        return $this->goBack();
+    }
+
+    public function actionPay(){
+        $user = new User();
+        if($user->idLogged()){
+            echo "ok";
+        }
+        echo "false";
+
     }
 }
