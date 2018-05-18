@@ -178,7 +178,7 @@ class Product extends \yii\db\ActiveRecord
                     </div></td>
                     <td class="col-sm-1 col-md-1" style="text-align: center">
                     <input type="id" name="id" class="form-control" style="display: none;" id="exampleInputEmail1" value="<?php echo $key; ?>">
-                    <input type="number" name="soluong" onchange="changeNumber(this.value,<?php echo $key; ?>,<?php echo $product->price; ?>)" class="form-control" id="exampleInputEmail1" value="<?php echo $value; ?>">
+                    <input type="number" name="soluong" onchange="changeNumber(this.value,<?php echo $key; ?>,<?php echo $product->price; ?>)" class="form-control" min="1" id="exampleInputEmail1" value="<?php echo $value; ?>">
                     </td>
                     <td class="col-sm-1 col-md-1 text-center"><strong><?= number_format($product->price) ?> VNĐ</strong></td>
                     <td class="col-sm-1 col-md-1 text-center"><strong id="<?php echo $key."thanhtien"; ?>"><?= number_format($product->price * $value) ?> VNĐ</strong></td>
