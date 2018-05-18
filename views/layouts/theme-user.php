@@ -38,6 +38,7 @@ $user = new User();
     <?php  include "nav-user.php";?>
 
     <div class="container">
+        <?php User::CheckMessage();  ?>
         <div class="row">
             <div class="col-md-9">
                 <div class="main box-border">
