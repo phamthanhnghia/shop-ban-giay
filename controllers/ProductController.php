@@ -213,12 +213,33 @@ class ProductController extends Controller
             'success' => '1',
         ];
     }
+    //
+    public function actionAddBasketButton(){
+        $this->doAddBasketButton();
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'success' => '1',
+        ];
+    }
+
+    public function doAddBasketButton(){
+        try {
+                $aBasket = $_SESSION['basket'];
+                $aBasket[$_POST['id']] =  $_POST['number'] ;
+                $_SESSION['basket'] = $aBasket ;
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
 
     public function removeIdBasket(){
         try {
                 $aBasket = $_SESSION['basket'];
                 unset($aBasket[$_POST['id']]);
                 $_SESSION['basket'] = $aBasket ;
+                if(empty($_SESSION['basket'])){
+                    unset($_SESSION['basket']);
+                }
             } catch (Exception $e) {
                 echo $e;
             }
