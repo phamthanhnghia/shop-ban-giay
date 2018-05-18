@@ -64,13 +64,19 @@ $product = new Product();
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Tiếp tục mua sắp
-                        </button></td>
+	                        <a href="<?php  echo Yii::$app->urlManager->createUrl("main");?>">
+	                        	<button type="button"  class="btn btn-default">
+	                            	<span class="glyphicon glyphicon-shopping-cart"></span> Tiếp tục mua sắp
+	                        	</button>
+	                    	</a>
+                    	</td>
                         <td>
-                        <button type="button" class="btn btn-success">
-                            Thanh toán <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        	<a href="<?php  echo Yii::$app->urlManager->createUrl("main/pay");?>">
+		                        <button type="button" class="btn btn-success">
+		                            Thanh toán <span class="glyphicon glyphicon-play"></span>
+		                        </button>
+		                    </a>
+	                    </td>
                     </tr>
                 </tbody>
             </table>
@@ -98,13 +104,28 @@ $product = new Product();
     }
 
     function changeNumber(number,id, price){
-    	console.log(number);
-    	console.log(id);
-    	console.log(price);
+    	// console.log(number);
+    	// console.log(id);
+    	// console.log(price);
     	var select = id+'thanhtien';
-    	thanhtien = number*price;
+    	tien = number*price;
+    	thanhtien = new Intl.NumberFormat().format(tien) + " VNĐ";
+    	$.ajax({
+               url: '<?php echo Yii::$app->request->baseUrl. '/product/add-basket-button' ?>',
+               type: 'post',
+               data: {
+                         _csrf : '<?=Yii::$app->request->getCsrfToken()?>',
+                         id : id,
+                         number : number
+                     },
+               success: function (data) {
+                   console.log(data);
+                   //alert("Thêm sản phẩm vào giỏ hàng thành công !");
+ 
+               }
+                });
     	document.getElementById(select).innerHTML = thanhtien;
-    	console.log(thanhtien);
-    	console.log(select);
+    	// console.log(thanhtien);
+    	// console.log(select);
     }
 </script>
