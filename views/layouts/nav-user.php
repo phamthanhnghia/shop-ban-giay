@@ -1,6 +1,7 @@
 <?php 
 use app\models\User;
 use app\models\Product;
+
 $product = new Product();
 ?>
 <nav class="navbar navbar-default" role="navigation">
@@ -30,7 +31,7 @@ $product = new Product();
                             echo $users->name;
                             ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../site/logout-user" align="center"><strong>Sign out </strong></a></li>
+                            <li><a href="<?php  echo Yii::$app->urlManager->createUrl("site/logout-user");?>" align="center"><strong>Đăng xuất </strong></a></li>
                             <li><a href="" align="center"><strong>Contact </strong></a></li>
                         </ul>
                     </li>
@@ -38,13 +39,13 @@ $product = new Product();
 
                     
                 <?php else: ?>
-                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">    </a></li>
                     
                     <li>
-                        <a href="../../site/login" >Login <b class="caret"></b></a>
+                        <a href="<?php  echo Yii::$app->urlManager->createUrl("site/login");?>" >Đăng nhập <b class="caret"></b></a>
                         
                     </li>
-                    <li><a href="../site/register">Sign up</a></li>
+                    <li><a href="<?php  echo Yii::$app->urlManager->createUrl("site/register");?>">Đăng ký</a></li>
                 <?php endif; ?>
 
 
@@ -52,7 +53,7 @@ $product = new Product();
 
 
                     <li >
-                        <a href="../../main/basket" >Giỏ hàng </a>
+                        <a href="<?php  echo Yii::$app->urlManager->createUrl("main/basket");?>" >Giỏ hàng </a>
                         
                     </li>
                 </ul>
