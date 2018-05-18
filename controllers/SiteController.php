@@ -178,4 +178,8 @@ class SiteController extends Controller
         return $this->render('register');
     }
     
+    public function  actionLoading(){
+        $this->layout = 0;
+        return $this->render('loading');
+    }
 }
