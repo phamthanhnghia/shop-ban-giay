@@ -35,7 +35,35 @@ use yii\widgets\LinkPager;
 	max-height: 200px;" src="../../images/product-images/<?php echo $product->showImage($key->id)?> ">
 	            <div class="caption">
                     <small><?= $key->code ?></small>
-	                <h3><a href="#"><?= $key->name ?> </a></h3>
+                    <h3>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <p><?= $key->name ?> </p>
+                        </div>
+                        <div class="col-xs-4">
+                              <select class="form-control" id="<?php echo $key->id."product"; ?>">
+
+                                        <?php $product->showSelectSizeByType($key->id_type); ?>
+                                        <!-- <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option> -->
+                                </select>
+                        </div>
+                    </div>
+	                </h3>
 	                <p>Giá : <strong><?= number_format($key->price) ?> VNĐ</strong>  </p>
 	                <p><button onclick="addToBasket(<?= $key->id ?>)" class="btn btn-success" >Thêm vào giỏ </button> <a href="<?php echo Yii::$app->request->baseUrl.'/main/detail?id='. $key->id ; ?>" class="btn btn-primary" role="button">Xem chi tiết</a></p>
 	            </div>
@@ -83,13 +111,16 @@ echo LinkPager::widget([
 
     //    });
     function addToBasket(id) {
-        // console.log(id);
+        var select = '#'+id+'product';
+        size = $(select).val();
+        //console.log($(select).val());
         $.ajax({
                url: '<?php echo Yii::$app->request->baseUrl. '/product/add-basket' ?>',
                type: 'post',
                data: {
                          _csrf : '<?=Yii::$app->request->getCsrfToken()?>',
-                         id : id
+                         id : id,
+                         size :size
                      },
                success: function (data) {
                    //console.log(data);
