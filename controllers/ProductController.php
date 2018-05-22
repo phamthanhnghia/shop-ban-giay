@@ -225,7 +225,7 @@ class ProductController extends Controller
     public function doAddBasketButton(){
         try {
                 $aBasket = $_SESSION['basket'];
-                $aBasket[$_POST['id']] =  $_POST['number'] ;
+                $aBasket[$_POST['key']]['amount'] =  $_POST['number'] ;
                 $_SESSION['basket'] = $aBasket ;
         } catch (Exception $e) {
             echo $e;
@@ -235,7 +235,7 @@ class ProductController extends Controller
     public function removeIdBasket(){
         try {
                 $aBasket = $_SESSION['basket'];
-                unset($aBasket[$_POST['id']]);
+                unset($aBasket[$_POST['key']]);
                 $_SESSION['basket'] = $aBasket ;
                 if(empty($_SESSION['basket'])){
                     unset($_SESSION['basket']);
