@@ -246,34 +246,59 @@ class ProductController extends Controller
     }
     public function doAddBasket(){ // tạo giỏ hàng
         try {
+            //  echo "<pre>";
+            // print_r($_POST);
+            // echo "</pre>";
+            // die;
             if(empty($_SESSION['basket'])){
-                $_SESSION['basket'] = array($_POST['id'] => 1);
+                $aBasket  = array();
+                $aBasket[] = array('id' => $_POST['id'],'size' => $_POST['size'], 'amount' => 1);
+                $_SESSION['basket'] =  $aBasket;
             }else{
                 $aBasket = $_SESSION['basket'];
                 
-                if(!empty($aBasket[$_POST['id']])){
-                    $mun = $aBasket[$_POST['id']];
+                $id_array =$this->search_array( $aBasket,$_POST['id'],$_POST['size'] );
+                
+                if( $id_array != -1){
+                    $mun = $aBasket[$id_array]['amount'];
                     $mun++;
-                    $aBasket[$_POST['id']] = $mun;
-                        $_SESSION['basket'] = $aBasket ;
-                    
-                }else{
-                    $aBasket = $_SESSION['basket'];
-                    $aBasket[$_POST['id']] =  1 ;
+                    $aBasket[$id_array]['amount'] = $mun;
                     $_SESSION['basket'] = $aBasket ;
+                }else{
+                    $aBasket  = $_SESSION['basket'];
+                    $aBasket[] = array('id' => $_POST['id'],'size' => $_POST['size'], 'amount' => 1);
+                    $_SESSION['basket'] =  $aBasket;
                 }
+                // if(!empty($aBasket[$_POST['id']])){
+                //     $mun = $aBasket[$_POST['id']];
+                //     $mun++;
+                //     $aBasket[$_POST['id']] = $mun;
+                //         $_SESSION['basket'] = $aBasket ;
+                    
+                // }else{
+                //     $aBasket = $_SESSION['basket'];
+                //     $aBasket[$_POST['id']] =  1 ;
+                //     $_SESSION['basket'] = $aBasket ;
+                // }
             }
         } catch (Exception $e) {
             echo $e;
         }
-        
-        
+    }
+
+    public function search_array($ArrayBasket , $id ,$size){ ////////////////////////////////
+        foreach ($ArrayBasket as $key => $value) {
+           if($ArrayBasket[$key]['id'] == $id && $ArrayBasket[$key]['size'] == $size){
+                return $key;
+           } 
+        }
+        return -1;
     }
 
     //
     public function actionTest()
     {
-        // unset($_SESSION['basket']);
+        //unset($_SESSION['basket']);
         if(isset($_SESSION['basket'])){
             echo "<pre>";
             print_r($_SESSION['basket']);
