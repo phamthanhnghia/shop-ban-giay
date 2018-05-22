@@ -62,7 +62,7 @@ $product = new Product();
                         <input type="text" placeholder="Enter Keyword Here ..." class="form-control">
                     </div>
                     &nbsp; 
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                 </form>
             </div>
             <!-- /.navbar-collapse -->
