@@ -13,6 +13,7 @@ use app\models\Product;
 use yii\data\Pagination;
 use app\models\ImageProduct;
 use app\models\User;
+use Yii;
 use app\controllers\SiteController;
 
  
@@ -60,11 +61,26 @@ class MainController extends Controller
     }
 
     public function actionPay(){
-        $user = new User();
-        if($user->idLogged()){
-            echo "ok";
-        }
-        echo "false";
+        
 
+
+
+        $this->layout = 'layout-user';
+        $post = Yii::$app->request->post();
+        $user = new User();
+        if ($user->idLogged()) {
+            return $this->goHome();
+        }
+       
+        if(isset($post['register']) && $post['register'] == 1){
+            $this->layout = 0;
+            $users = new User();
+            $users->beforeSaveUser($post['Users']);
+            $users->validate();
+            $users->save();
+            echo $users->id;
+            return $this->render('info-customer/index');
+        }
+        return $this->render('info-customer/register');
     }
 }
