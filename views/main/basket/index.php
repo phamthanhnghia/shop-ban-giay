@@ -85,15 +85,15 @@ $product = new Product();
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function removeTr(id){
-		var select = '#'+id+'tr';
+	function removeTr(key){
+		var select = '#'+key+'tr';
 		$(select).remove();
 		$.ajax({
                url: '<?php echo Yii::$app->request->baseUrl. '/product/remove-id-basket' ?>',
                type: 'post',
                data: {
                          _csrf : '<?=Yii::$app->request->getCsrfToken()?>',
-                         id : id
+                         key : key
                      },
                success: function (data) {
                    console.log(data);
@@ -103,11 +103,11 @@ $product = new Product();
             });
     }
 
-    function changeNumber(number,id, price){
-    	// console.log(number);
-    	// console.log(id);
-    	// console.log(price);
-    	var select = id+'thanhtien';
+    function changeNumber(number,key,price){
+    	console.log(number);
+    	console.log(key);
+    	console.log(price);
+    	var select = key+'thanhtien';
     	tien = number*price;
     	thanhtien = new Intl.NumberFormat().format(tien) + " VNĐ";
     	$.ajax({
@@ -115,7 +115,7 @@ $product = new Product();
                type: 'post',
                data: {
                          _csrf : '<?=Yii::$app->request->getCsrfToken()?>',
-                         id : id,
+                         key : key,
                          number : number
                      },
                success: function (data) {
@@ -128,4 +128,5 @@ $product = new Product();
     	// console.log(thanhtien);
     	// console.log(select);
     }
+    
 </script>
