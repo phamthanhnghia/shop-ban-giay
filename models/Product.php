@@ -131,6 +131,26 @@ class Product extends \yii\db\ActiveRecord
         return $Image['link'];
     }
 
+    public function getTypeById($id){
+        return Type::findOne($id);
+    }
+
+    public function showSelectSizeByType($id){
+        try {
+            $model = Type::findOne($id);
+            if(!empty($model)){
+                for ($i= $model->size_form; $i <= $model->size_to ; $i++) { 
+                    ?>
+                        <option><?php echo $i;?></option>
+                    <?php
+                }
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        
+    }
+
     public function getBasket(){
         
        // echo "<pre>";
@@ -164,7 +184,7 @@ class Product extends \yii\db\ActiveRecord
         if(isset($_SESSION['basket'])){
             $aBasket = $_SESSION['basket'];
             foreach ($aBasket as $key => $value) {
-                 $product =  $data = Product::findOne(['id' => $key]);
+                 $product = Product::findOne(['id' => $key]);
                 ?>
                 <tr id="<?php echo $key."tr"; ?>" >
                     <td class="col-sm-8 col-md-6">
