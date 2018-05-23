@@ -64,11 +64,7 @@ class MainController extends Controller
     }
 
     public function actionPay(){
-        
-
         $bill = new Bill();
-
-
         $this->layout = 'layout-user';
         $post = Yii::$app->request->post();
         $user = new User();
@@ -85,9 +81,14 @@ class MainController extends Controller
             $users->validate();
             $users->save();
             $_SESSION['ID_USER'] = $users->id;
-            // echo 
+            $bill->createBill();
             return $this->render('pay/success');
         }
         return $this->render('info-customer/register');
+    }
+
+    public function actionBill(){
+        $this->layout = 'layout-user';
+        return $this->render('bill/index');
     }
 }
