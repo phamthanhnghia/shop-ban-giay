@@ -11,6 +11,7 @@ $type = $type->getIdType($model->id_type);
 //             print_r($type);
 //             echo "</pre>";
 //             die;
+$product = Product::findOne(['id' => $model->id]);
 ?>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -41,13 +42,13 @@ $type = $type->getIdType($model->id_type);
 						</div>
 						<p class="product-description"> Hunter dòng cơ bản có những thay đổi lớn về họa tiết trên upper (thân giày) giày và ứng dụng một trong những bộ đế bán chạy nhất vào năm 2017.</p>
 						<h4 class="price">Giá hiện tại: <span><?= number_format($model->price) ." VNĐ" ?></span></h4>
-						<p class="vote"><strong>Khuyến mãi</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+						<p class="vote"><strong>Khuyến mãi</strong>  <?php echo $product->getDiscountProductsDiscount() . "%"; ?> <strong>(<?php echo $product->getDiscountProductsInfo(); ?>)</strong></p>
 						<h5 class="sizes row"> 
                 <div class="col-xs-2">
                 sizes
                 </div>
                 <div class="col-xs-3">
-  							  <select class="form-control" id="sel1">
+  							  <select class="form-control" id="<?php echo $model->id."product"; ?>">
                     <?php for($i = $type->size_form;  $i <= $type->size_to ; $i++) { ?>
                     <option><?= $i?></option>
                     <?php } ?>
@@ -60,7 +61,7 @@ $type = $type->getIdType($model->id_type);
 							
 						</h5>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">Đặt mua ngay</button>
+							<button class="add-to-cart btn btn-default" onclick="addToBasket(<?= $product->id ?>)" type="button">Đặt mua ngay</button>
 							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
 						</div>
 					</div>
@@ -69,6 +70,28 @@ $type = $type->getIdType($model->id_type);
 		</div>
 	</div>
   <hr>
+<script type="text/javascript">
+  function addToBasket(id) {
+        var select = '#'+id+'product';
+        size = $(select).val();
+        //console.log($(select).val());
+        $.ajax({
+               url: '<?php echo Yii::$app->request->baseUrl. '/product/add-basket' ?>',
+               type: 'post',
+               data: {
+                         _csrf : '<?=Yii::$app->request->getCsrfToken()?>',
+                         id : id,
+                         size :size
+                     },
+               success: function (data) {
+                   //console.log(data);
+                   alert("Thêm sản phẩm vào giỏ hàng thành công !");
+ 
+               }
+                });
+    }
+
+</script>  
 <style type="text/css">
 	
 /*****************globals*************/
