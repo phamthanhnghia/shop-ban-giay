@@ -79,6 +79,24 @@ class Product extends \yii\db\ActiveRecord
              return DiscountProduct::findOne($this->id_discount);
     }
 
+    public function getDiscountProductsDiscount()
+    {   
+        $discount =DiscountProduct::findOne($this->id_discount);
+         if($discount  ){
+            return $discount->discount;
+         } 
+         return '' ;
+    }
+
+    public function getDiscountProductsInfo()
+    {   
+        $discount =DiscountProduct::findOne($this->id_discount);
+         if($discount  ){
+            return $discount->info;
+         } 
+         return '' ;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -201,9 +219,9 @@ class Product extends \yii\db\ActiveRecord
                             <span>Khuyến mãi: </span>
                             <span class="text-success">
                                 <strong>
-                                    <?php echo $product->getDiscountProducts()->discount . "%"; ?>
+                                    <?php echo $product->getDiscountProductsDiscount() . "%"; ?>
                                 </strong>
-                                <?php echo $product->getDiscountProducts()->info; ?>
+                                <?php echo $product->getDiscountProductsInfo(); ?>
                             </span>
                         </div>
                     </div></td>
