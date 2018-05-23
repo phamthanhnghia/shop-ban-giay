@@ -72,4 +72,41 @@ class BillDetail extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Bill::className(), ['id' => 'id_bill']);
     }
+
+    public function createBillDetail($id_bill){
+        try {
+            if(isset($_SESSION['basket'])){
+                $total_price = 0;
+                $aBasket = $_SESSION['basket'];
+                 foreach ($aBasket as $key => $value) {
+                    $model =  new BillDetail();
+                    $product  = Product::findOne(['id' => $aBasket[$key]['id']]);
+                    $discount  = DiscountProduct::findOne(['id' => $product->id_discount]);
+
+                    $sum_price = $aBasket[$key]['amount'] * $product->price * ((100 - $discount->discount )/100);
+                    $total_price = $total_price + $sum_price;
+                    $model->attributes = array(
+                                            'amount' => $aBasket[$key]['amount'] ,
+                                            'size_product' => $aBasket[$key]['size'],
+                                            'sum_price' => $sum_price,
+                                            'code_color' => '',
+                                            'id_product' =>  $aBasket[$key]['id'] ,
+                                            'id_bill' => $id_bill, 
+                                        );
+                    $model->save();
+                }
+            $bill = Bill::findOne($id_bill);
+            $bill->attributes = array(
+                                'total_price' => $total_price,
+                                );
+            $bill->save();
+            unset($_SESSION['basket']);
+
+            } // end if
+            
+        } catch (Exception $e) {
+            
+        }
+        
+    }
 }
