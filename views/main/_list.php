@@ -128,7 +128,7 @@ echo LinkPager::widget([
  
                }
                 });
-        }
+    }
     
     
 </script>
