@@ -11,7 +11,7 @@ $user = User::findUsersById($_SESSION['ID_USER']);
 
         <h3>Chào, <?php echo $user->name; ?></h3>
         <p style="font-size:20px;color:#5C5C5C;">Cám ơn bạn đã mua hàng của chúng tôi, chúng tôi đã gửi thông tin hoá đơn đến email "<?php echo $user->email ; ?>". Đến email để xem thông tin hoá đơn.</p>
-        <a href="" class="btn btn-success">     Kiểm tra hoá đơn      </a>
+        <a href="<?php  echo Yii::$app->urlManager->createUrl("main/bill");?>" class="btn btn-success">     Kiểm tra hoá đơn      </a>
     <br><br>
         </div>
         
