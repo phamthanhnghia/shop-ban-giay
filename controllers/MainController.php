@@ -91,4 +91,60 @@ class MainController extends Controller
         $this->layout = 'layout-user';
         return $this->render('bill/index');
     }
+
+    public function actionBillDetail($id){ //$id bill
+        $this->layout = 'layout-user';
+        return $this->render('bill/billdetail');
+    }
+
+    public function actionRemoveBill($id){
+
+        
+        try {
+            // $billdetail = BillDetail::find()->where(['id_bill'=>$id])->all();
+            // foreach ($billdetail as $key) {
+            //     $key->delete();
+            // }
+            // $bill = Bill::findOne($id)->delete();
+
+            $bill = Bill::findOne($id);
+            $bill->attributes = array(
+                                'status' => 2, /// danger
+                                );
+            $bill->update();
+            $this->layout = 'layout-user';
+            return $this->render('pay/remove');
+        } catch (Exception $e) {
+            $this->layout = 'layout-user';
+            return $this->render('bill/index');
+        }
+        
+    }
+    public function actionHideBill($id){
+
+        
+        try {
+            // $billdetail = BillDetail::find()->where(['id_bill'=>$id])->all();
+            // foreach ($billdetail as $key) {
+            //     $key->delete();
+            // }
+            // $bill = Bill::findOne($id)->delete();
+
+            $bill = Bill::findOne($id);
+            $bill->attributes = array(
+                                'status' => -1, /// ẩn đi cho khách hàng
+                                );
+            $bill->update();
+            $this->layout = 'layout-user';
+            return $this->render('bill/index');
+        } catch (Exception $e) {
+            // $this->layout = 'layout-user';
+            // return $this->render('bill/index');
+        }
+        
+    }
+    public function actionInfoCustomer(){
+        $this->layout = 'layout-user';
+        return $this->render('info-customer/index');
+    }
 }
