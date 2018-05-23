@@ -102,6 +102,82 @@ class Bill extends \yii\db\ActiveRecord
         return $pass; 
     }
     
+    public function showListBill(){
+        try {
+            if(isset($_SESSION['ID_USER'])){
+                $listBill = Bill::find()->where(['id_user' => $_SESSION['ID_USER']])->all();
+                foreach ($listBill as $key => $value) {
+                    // echo $value->id;
+                    if($value->status == 1 ){
+                        ?>
+                        <div class="bs-calltoaction bs-calltoaction-default">
+                            <div class="row">
+                                <div class="col-md-9 cta-contents">
+                                    <h1 class="cta-title">Mã hoá đơn : <?php echo $value->bill_code; ?></h1>
+                                    <div class="cta-desc">
+                                        <p>Gía trị hoá đơn : <b><?php echo number_format($value->total_price) . " VNĐ"; ?> </b></p>
+                                        <p>Thời gian tạo : <?php echo $value->created_date; ?>.</p>
+                                        <p>Trạng thái <b>chờ xử lý.</b></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 cta-button">
+                                    <a href="#" class="btn btn-lg btn-block btn-default">Xem chi tiết !</a>
+                                </div>
+                             </div>
+                        </div>
+
+                        <?php
+                    }
+                    if($value->status == 2 ){
+                        ?>
+                       <div class="bs-calltoaction bs-calltoaction-danger">
+                            <div class="row">
+                                <div class="col-md-9 cta-contents">
+                                    <h1 class="cta-title">Mã hoá đơn : <?php echo $value->bill_code; ?></h1>
+                                    <div class="cta-desc">
+                                        <p>Gía trị hoá đơn : <b><?php echo number_format($value->total_price) . " VNĐ"; ?> </b></p>
+                                        <p>Thời gian tạo : <?php echo $value->created_date; ?>.</p>
+                                        <p>Trạng thái <b>đã huỷ.</b></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 cta-button">
+                                    <a href="#" class="btn btn-lg btn-block btn-danger">Xem chi tiết !</a>
+                                </div>
+                             </div>
+                        </div>
+
+                        <?php
+                    }
+
+                    if($value->status == 3 ){
+                        ?>
+                       <div class="bs-calltoaction bs-calltoaction-primary">
+                            <div class="row">
+                                <div class="col-md-9 cta-contents">
+                                    <h1 class="cta-title">Mã hoá đơn : <?php echo $value->bill_code; ?></h1>
+                                    <div class="cta-desc">
+                                        <p>Gía trị hoá đơn : <b><?php echo number_format($value->total_price) . " VNĐ"; ?> </b></p>
+                                        <p>Thời gian tạo : <?php echo $value->created_date; ?>.</p>
+                                        <p>Trạng thái <b>Hoàn thành.</b></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 cta-button">
+                                    <a href="#" class="btn btn-lg btn-block btn-primary">Xem chi tiết !</a>
+                                </div>
+                             </div>
+                        </div>
+
+                        <?php
+                    }
+
+                }
+
+            }
+        } catch (Exception $e) {
+            
+        }
+        
+    }
 
 
 }
