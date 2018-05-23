@@ -31,9 +31,11 @@ $product = new Product();
                             echo $users->name;
                             ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php  echo Yii::$app->urlManager->createUrl("site/logout-user");?>" align="center"><strong>Đăng xuất </strong></a></li>
+                            <li><a href="<?php  echo Yii::$app->urlManager->createUrl("main/info-customer");?>" align="center"><strong>Thông tin </strong></a></li>
                             <li><a href="<?php  echo Yii::$app->urlManager->createUrl("main/bill");?>" align="center"><strong>Hoá đơn </strong></a></li>
-                            <li><a href="" align="center"><strong>Contact </strong></a></li>
+                            <li><a href="<?php  echo Yii::$app->urlManager->createUrl("site/logout-user");?>" align="center"><strong>Đăng xuất </strong></a></li>
+                            
+                            
                         </ul>
                     </li>
 
