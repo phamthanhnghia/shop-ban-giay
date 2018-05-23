@@ -13,6 +13,9 @@ use app\models\Product;
 use yii\data\Pagination;
 use app\models\ImageProduct;
 use app\models\User;
+use app\models\Bill;
+use app\models\BillDetail;
+use app\controllers\BillController;
 use Yii;
 use app\controllers\SiteController;
 
@@ -63,13 +66,16 @@ class MainController extends Controller
     public function actionPay(){
         
 
+        $bill = new Bill();
 
 
         $this->layout = 'layout-user';
         $post = Yii::$app->request->post();
         $user = new User();
         if ($user->idLogged()) {
-            return $this->goHome();
+            $bill->createBill();
+            return $this->render('pay/success');
+            //return $this->goHome();
         }
        
         if(isset($post['register']) && $post['register'] == 1){
@@ -78,8 +84,9 @@ class MainController extends Controller
             $users->beforeSaveUser($post['Users']);
             $users->validate();
             $users->save();
-            echo $users->id;
-            return $this->render('info-customer/index');
+            $_SESSION['ID_USER'] = $users->id;
+            // echo 
+            return $this->render('pay/success');
         }
         return $this->render('info-customer/register');
     }
