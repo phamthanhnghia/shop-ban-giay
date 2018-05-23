@@ -41,7 +41,12 @@ AppAsset::register($this);
     <?= $content ?>
                             
     <!-- /.col -->
-    <div class="col-md-12 end-box ">
+    <div class="col-md-12 end-box " style="position: fixed;
+                       left: 0;
+                       bottom: 0;
+                       width: 100%;
+                       color: white;
+                       text-align: center;">
        
     </div>
     <!-- /.col -->
