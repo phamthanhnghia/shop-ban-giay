@@ -18,10 +18,10 @@ use yii\bootstrap\ActiveForm;
                     <div class="row">
                     <div class="span6">
                         <div class="form-group">
-                        <input type="text" id="users-username" class="form-control" name="Users[username]" placeholder="User Name" style="display: none;">
+                        <input type="text" id="users-username" class="form-control" name="Users[username]" placeholder="User Name" >
                         </div>
                         <div class="form-group">
-                            <input type="password" id="users-username" class="form-control" name="Users[password]" placeholder="Password" style="display: none;">
+                            <input type="password" id="users-username" class="form-control" name="Users[password]" placeholder="Password" >
                         </div>
                         <div class="form-group">
                             <label>Name</label>
