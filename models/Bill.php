@@ -71,4 +71,37 @@ class Bill extends \yii\db\ActiveRecord
     {
         return $this->hasMany(BillDetail::className(), ['id_bill' => 'id']);
     }
+    public function createBill(){
+        $model =  new Bill();
+        $billdetail = new BillDetail();
+        $format = "Y-m-d h:m:s";
+        $model->attributes = array(
+                                'total_price' => 0,
+                                'bill_code' => $this->createBillCode(),
+                                'status' => 1,
+                                'created_date' => date($format),
+                                'id_user' => $_SESSION['ID_USER'] );
+        $model->save();
+        //echo $model->id;
+
+        $billdetail->createBillDetail($model->id);
+
+    }
+
+    public function createBillCode() { 
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ023456789"; 
+        srand((double)microtime()*1000000); 
+        $i = 0; 
+        $pass = '' ; 
+        while ($i <= 7) { 
+            $num = rand() % 33; 
+            $tmp = substr($chars, $num, 1); 
+            $pass = $pass . $tmp; 
+            $i++; 
+        } 
+        return $pass; 
+    }
+    
+
+
 }
