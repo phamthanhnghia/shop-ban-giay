@@ -180,9 +180,9 @@ class Product extends \yii\db\ActiveRecord
         return $aResult;
     }
 
-    // public function getDiscountProductById(){
-
-    // }
+    public function getProductById($id){
+        return Product::findOne(['id' => $id]);
+    }
 
     public function showProductOnBasket(){
         $product = new Product();
