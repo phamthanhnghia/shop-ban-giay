@@ -99,7 +99,7 @@ class BillDetail extends \yii\db\ActiveRecord
             $bill->attributes = array(
                                 'total_price' => $total_price,
                                 );
-            $bill->save();
+            $bill->update();
             unset($_SESSION['basket']);
 
             } // end if
