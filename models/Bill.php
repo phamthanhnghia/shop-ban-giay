@@ -48,10 +48,10 @@ class Bill extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'total_price' => 'Total Price',
-            'bill_code' => 'Bill Code',
-            'status' => '0: ko còn - 1 : báo giá - 2 : hủy - 3: đã bán',
-            'created_date' => 'Created Date',
+            'total_price' => 'Tổng tiền',
+            'bill_code' => 'Mã hoá đơn',
+            'status' => 'Trạng thái', // 1- chờ xử lý , 2- đã huỷ, 3- hoàn thành , 0 - đang xử lý
+            'created_date' => 'Ngày tạo',
             'id_user' => 'Id User',
         ];
     }
@@ -67,6 +67,23 @@ class Bill extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+
+    public function getArrayStatus(){
+        return [
+            '1' => 'chờ xử lý' , 
+            '2' => 'đã huỷ', 
+            '3' => 'hoàn thành' ,
+            '0' => 'đang xử lý'
+        ];
+    }
+
+    public function showNameStatus($id){
+        $Astatus = $this->getArrayStatus();
+        if(!empty($Astatus[$id]))
+            return $Astatus[$id];
+        return 1;
+
+    }
     public function getBillDetails()
     {
         return $this->hasMany(BillDetail::className(), ['id_bill' => 'id']);
