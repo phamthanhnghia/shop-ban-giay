@@ -26,9 +26,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'total_price',
+             [
+                'attribute' => 'total_price',
+                //'label' => 'Trạng thái',
+                'value' => function($model){ 
+                            $str  = number_format($model->total_price)  ." VNĐ";
+                            return $str;
+                        },
+            ],
+            //'total_price',
             'bill_code',
-            'status',
+            //'status',
+            [
+                'attribute' => 'status',
+                //'label' => 'Trạng thái',
+                'value' => function($model){ 
+                         return $model->showNameStatus($model->status);
+                        },
+            ],
+
             'created_date',
             //'id_user',
 
