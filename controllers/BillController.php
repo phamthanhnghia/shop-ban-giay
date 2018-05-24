@@ -8,7 +8,7 @@ use app\controllers\BillSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\BillDetail;
 /**
  * BillController implements the CRUD actions for Bill model.
  */
@@ -35,6 +35,7 @@ class BillController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'theme-admin';
         $searchModel = new BillSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +53,9 @@ class BillController extends Controller
      */
     public function actionView($id)
     {
+
+        $this->layout = 'theme-admin';
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,6 +68,8 @@ class BillController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'theme-admin';
+
         $model = new Bill();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -84,6 +90,7 @@ class BillController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'theme-admin';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -104,6 +111,11 @@ class BillController extends Controller
      */
     public function actionDelete($id)
     {
+        $billdetail = BillDetail::find()->where(['id_bill'=>$id])->all();
+            foreach ($billdetail as $key) {
+                $key->delete();
+            }
+            // $bill = Bill::findOne($id)->delete();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
