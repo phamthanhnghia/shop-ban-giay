@@ -60,20 +60,19 @@ $product = new Product();
                         
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" placeholder="Enter Keyword Here ..." class="form-control">
-                    </div>
-                    &nbsp; 
-                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                </form>
+                
+               <!--  <form autocomplete="off" class="navbar-form navbar-right" action="/action_page.php">
+                  <div  class="form-group" class="autocomplete" style="width:300px;">
+                    <input id="search" type="text" name="myCountry" placeholder="Country" class="form-control">
+                  </div>
+                  <input type="submit">
+                </form> -->
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-
+    
 
 
 
@@ -99,6 +98,8 @@ $product = new Product();
 </div> -->
 
 <script type="text/javascript">
+    
+
     var data = [];
     function getBasket(){
         data = JSON.parse(' <?php $product->getBasket(); ?>');
@@ -112,4 +113,11 @@ $product = new Product();
         console.log(data);
         console.log(data.length);
     }
+    /////////////////////////////////////////////////////////////////////////
+
+   
+
+
+
+
 </script>
