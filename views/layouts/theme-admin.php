@@ -25,6 +25,7 @@ $user = new User();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
+  
   <link rel="stylesheet" href="<?php echo Yii::$app->homeUrl.'theme-admin-assets/bower_components/bootstrap/dist/css/bootstrap.min.css' ?>">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo Yii::$app->homeUrl.'theme-admin-assets/bower_components/font-awesome/css/font-awesome.min.css' ?>">
@@ -129,10 +130,10 @@ $user = new User();
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php  echo Yii::$app->urlManager->createUrl("main/info-customer");?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../site/logout-user" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php  echo Yii::$app->urlManager->createUrl("site/logout-user");?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -187,7 +188,7 @@ $user = new User();
           
         </li>
         <li >
-          <a href="../..">
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("");?>">
             <i class="fa fa-files-o"></i>
             <span>Trang bán hàng</span>
             
@@ -201,7 +202,7 @@ $user = new User();
         </li>
         
         <li>
-          <a href="../../type"><i class="fa fa-th"></i> 
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("type");?>"><i class="fa fa-th"></i> 
           <span>Loại Sản phẩm</span>
           <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
@@ -210,41 +211,36 @@ $user = new User();
         </li>
 
         <li>
-          <a href="../../discount-product">
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("discount-product");?>">
             <i class="fa fa-pie-chart"></i>
             <span>Khuyến mãi</span>
           </a>
         </li>
         
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+        
+
+        <li>
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("");?>"><i class="fa fa-laptop"></i>
+          <span>Tiếp nhận hoá đơn</span>
+          <span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+          </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
         </li>
-        <li><a href="../../product"><i class="fa fa-edit"></i> <span>Sản phẩm</span></a></li>
+
+        <li><a href="<?php  echo Yii::$app->urlManager->createUrl("product");?>"><i class="fa fa-edit"></i> <span>Sản phẩm</span></a></li>
         <li class="">
           <a href="../../user">
             <i class="fa fa-table"></i> <span>Người dùng</span>
           </a>
         </li>
+        
+
         <li>
-          <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("bill");?>">
+            <i class="fa fa-calendar"></i> 
+            <span>Hoá đơn</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
             </span>
           </a>
         </li>
