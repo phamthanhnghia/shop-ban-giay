@@ -182,10 +182,18 @@ $user = new User();
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="#">
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("home");?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
           
+        </li>
+         <li>
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("bill");?>">
+            <i class="fa fa-calendar"></i> 
+            <span>Hoá đơn</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
         </li>
         <li >
           <a href="<?php  echo Yii::$app->urlManager->createUrl("");?>">
@@ -236,14 +244,7 @@ $user = new User();
         </li>
         
 
-        <li>
-          <a href="<?php  echo Yii::$app->urlManager->createUrl("bill");?>">
-            <i class="fa fa-calendar"></i> 
-            <span>Hoá đơn</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>
+       
         <li>
           <a href="pages/mailbox/mailbox.html">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
