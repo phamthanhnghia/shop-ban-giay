@@ -77,6 +77,16 @@ class Bill extends \yii\db\ActiveRecord
         ];
     }
 
+    public function countBillNewOrder(){
+        return Bill::find()->where(['status'=> 1])->count();
+    }
+
+    public function rateBill(){
+        $all = Bill::find()->count();
+        $finish = Bill::find()->where(['status'=> 3])->count();
+        return round(($finish/$all)*100,1);
+    }
+
     public function showNameStatus($id){
         $Astatus = $this->getArrayStatus();
         if(!empty($Astatus[$id]))
