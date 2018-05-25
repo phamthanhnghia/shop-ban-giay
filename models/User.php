@@ -287,4 +287,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             sleep($seconds);
         }
     }
+
+    public function countUser(){
+        return User::find()->where(['role'=>4])->count();
+    }
 }
