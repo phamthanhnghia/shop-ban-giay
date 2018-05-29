@@ -10,6 +10,11 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\User;
+use app\models\Number;
+
+
+$number = new Number();
+$number->increaseAccess();
 
 AppAsset::register($this);
 $user = new User();
