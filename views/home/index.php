@@ -59,7 +59,7 @@ $user = new User();
             <div class="inner">
               <h3>65</h3>
 
-              <p>Số lượng khách truy cậps</p>
+              <p>Số lượng khách truy cập</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
