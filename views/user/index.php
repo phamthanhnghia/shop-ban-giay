@@ -7,7 +7,7 @@ use yii\jui\DatePicker;
 /* @var $searchModel app\controllers\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Người dùng - tài khoản';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Tạo người dùng', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
