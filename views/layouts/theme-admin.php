@@ -238,7 +238,7 @@ $user = new User();
 
         <li><a href="<?php  echo Yii::$app->urlManager->createUrl("product");?>"><i class="fa fa-edit"></i> <span>Sản phẩm</span></a></li>
         <li class="">
-          <a href="../../user">
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("user");?>">
             <i class="fa fa-table"></i> <span>Người dùng</span>
           </a>
         </li>
