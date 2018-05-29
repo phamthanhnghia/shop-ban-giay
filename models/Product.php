@@ -240,5 +240,25 @@ class Product extends \yii\db\ActiveRecord
             }
         }
     }
+
+    public function showProductHeaderByIdType($id_type){
+        $product =Product::find()->where(['id_type'=>$id_type])->all();
+        $count = 4;
+        foreach ($product as $key => $value) {
+            $count --;
+            $duct = new Product();
+            if($count < 0)
+            {
+                break;
+            }
+            ?>
+            <li>
+                <a href="<?php echo Yii::$app->request->baseUrl.'/main/detail?id='. $value->id ; ?>" >
+                    <img src="../../images/product-images/<?php echo $duct->showImage($value->id) ?> "  alt="img01"><h4><?= $value->name ?></h4>
+                </a>
+            </li>
+            <?php
+        }
+    }
 }
 ?>
