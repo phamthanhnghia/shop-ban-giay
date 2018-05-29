@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\controllers\BillSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bills';
+$this->title = 'Hoá đơn';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bill-index">
@@ -15,9 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Bill', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
              [
                 'attribute' => 'total_price',
                 //'label' => 'Trạng thái',
