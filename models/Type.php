@@ -104,4 +104,8 @@ class Type extends \yii\db\ActiveRecord
     }
 
     
+    public function showNameById($id){
+        $model = Type::findOne($id);
+        return $model->name;
+    }
 }
