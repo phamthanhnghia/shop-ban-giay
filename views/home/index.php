@@ -2,10 +2,13 @@
 use app\models\User;
 use app\models\Product;
 use app\models\Bill;
+use app\models\Number;
+
 
 $product = new Product();
 $bill = new  Bill();
 $user = new User();
+$number = new Number();
 ?>
 <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -57,7 +60,7 @@ $user = new User();
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?= $number->getValueAccess() ?></h3>
 
               <p>Số lượng khách truy cập</p>
             </div>
