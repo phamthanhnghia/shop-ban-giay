@@ -228,7 +228,7 @@ $user = new User();
         
 
         <li>
-          <a href="<?php  echo Yii::$app->urlManager->createUrl("");?>"><i class="fa fa-laptop"></i>
+          <a href="<?php  echo Yii::$app->urlManager->createUrl("home/access-bill");?>"><i class="fa fa-laptop"></i>
           <span>Tiếp nhận hoá đơn</span>
           <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
@@ -333,9 +333,15 @@ $user = new User();
 
       <?= Alert::widget() ?>
       <?php
-                
-                if($user->idLogged() ){
-                    echo $content;
+                 
+                if(isset($_SESSION['ID_USER'])){
+                    $users = User::findUsersById($_SESSION['ID_USER']);
+                    if($users->role != 4){
+                      echo $content;
+                    }else{
+                      header('Location: /');
+                      exit;
+                    }
                 }
                 else{
                     header('Location: /site/login');
