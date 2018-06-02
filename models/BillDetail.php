@@ -81,9 +81,18 @@ class BillDetail extends \yii\db\ActiveRecord
                  foreach ($aBasket as $key => $value) {
                     $model =  new BillDetail();
                     $product  = Product::findOne(['id' => $aBasket[$key]['id']]);
-                    $discount  = DiscountProduct::findOne(['id' => $product->id_discount]);
 
-                    $sum_price = $aBasket[$key]['amount'] * $product->price * ((100 - $discount->discount )/100);
+                    $discount =DiscountProduct::findOne($product->id_discount);
+                     if($discount  ){
+                        $discount = $discount->discount;
+                     }else{
+                        $discount =   1;
+
+                     }
+
+                   
+
+                    $sum_price = $aBasket[$key]['amount'] * $product->price * ((100 - $discount )/100);
                     $total_price = $total_price + $sum_price;
                     $model->attributes = array(
                                             'amount' => $aBasket[$key]['amount'] ,

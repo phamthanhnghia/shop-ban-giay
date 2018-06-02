@@ -85,7 +85,7 @@ class Product extends \yii\db\ActiveRecord
          if($discount  ){
             return $discount->discount;
          } 
-         return '' ;
+         return  1;
     }
 
     public function getDiscountProductsInfo()
@@ -230,9 +230,11 @@ class Product extends \yii\db\ActiveRecord
                     <input type="number" name="soluong" onchange="changeNumber(this.value,<?php echo $key; ?>,<?php echo $product->price; ?>,<?php echo $product->getDiscountProductsDiscount(); ?>)" class="form-control" min="1" id="exampleInputEmail1" value="<?php echo $value['amount']; ?>">
                     </td>
                     <td class="col-sm-1 col-md-1 text-center"><strong><?= number_format($product->price) ?> VNĐ</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong  id="<?php echo $key."thanhtien"; ?>"><?= number_format($product->price * $value['amount'] * (100 - $product->getDiscountProductsDiscount()) /100 ) ?> VNĐ</strong>
+                    <td class="col-sm-1 col-md-1 text-center"><strong  id="<?php echo $key."thanhtien"; ?>"><?php echo number_format($product->price * $value['amount'] * (100 - $product->getDiscountProductsDiscount()) /100 ) ?> VNĐ</strong>
 
-                        <p id="<?php echo $key."thanhtienan"; ?>" style="display: none;"><?= $product->price * $value['amount'] * (100 - $product->getDiscountProductsDiscount()) /100 ?></p>
+                        <p id="<?php echo $key."thanhtienan"; ?>" 
+                                style="display: none;">
+                                <?= (($product->price * $value['amount']) * (100 - $product->getDiscountProductsDiscount()))/100; ?></p>
                     </td>
                     <td class="col-sm-1 col-md-1">
                     <button type="button" class="btn btn-danger" onclick="removeTr(<?php echo $key; ?>)">
