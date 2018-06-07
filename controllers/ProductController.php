@@ -269,17 +269,7 @@ class ProductController extends Controller
                     $aBasket[] = array('id' => $_POST['id'],'size' => $_POST['size'], 'amount' => 1);
                     $_SESSION['basket'] =  $aBasket;
                 }
-                // if(!empty($aBasket[$_POST['id']])){
-                //     $mun = $aBasket[$_POST['id']];
-                //     $mun++;
-                //     $aBasket[$_POST['id']] = $mun;
-                //         $_SESSION['basket'] = $aBasket ;
-                    
-                // }else{
-                //     $aBasket = $_SESSION['basket'];
-                //     $aBasket[$_POST['id']] =  1 ;
-                //     $_SESSION['basket'] = $aBasket ;
-                // }
+                
             }
         } catch (Exception $e) {
             echo $e;
