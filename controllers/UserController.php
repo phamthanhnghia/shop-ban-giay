@@ -151,4 +151,29 @@ class UserController extends Controller
        
     return Yii::$app->runController();
     }
+
+
+
+     public function actionAjaxUpdate()
+    {
+
+         $this->doAjaxUpdate();
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'success' => '1',
+        ];
+            
+            // echo "<pre>";
+            // print_r($model);
+            // echo "</pre>";
+            // die;
+    
+    }
+
+    public function doAjaxUpdate(){
+        $model = $this->findModel($_SESSION['ID_USER']);
+             $model->beforeSaveUser($_POST);
+             $model->validate();
+                $model->save();
+    }
 }

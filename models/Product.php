@@ -85,7 +85,7 @@ class Product extends \yii\db\ActiveRecord
          if($discount  ){
             return $discount->discount;
          } 
-         return '' ;
+         return  1;
     }
 
     public function getDiscountProductsInfo()
@@ -209,7 +209,7 @@ class Product extends \yii\db\ActiveRecord
             foreach ($aBasket as $key => $value) {
                  $product = Product::findOne(['id' => $aBasket[$key]['id']]);
                 ?>
-                <tr id="<?php echo $key."tr"; ?>" >
+                <tr id="<?php echo $key."tr"; ?>"  class="cotsanpham">
                     <td class="col-sm-8 col-md-6">
                     <div class="media">
                         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="../../images/product-images/<?php echo $product->showImage($value['id']) ?> " style="width: 72px; height: 72px;"> </a>
@@ -227,10 +227,15 @@ class Product extends \yii\db\ActiveRecord
                     </div></td>
                     <td class="col-sm-1 col-md-1" style="text-align: center">
                     <input type="id" name="id" class="form-control" style="display: none;" id="exampleInputEmail1" value="<?php echo $value['id']; ?>">
-                    <input type="number" name="soluong" onchange="changeNumber(this.value,<?php echo $key; ?>,<?php echo $product->price; ?>)" class="form-control" min="1" id="exampleInputEmail1" value="<?php echo $value['amount']; ?>">
+                    <input type="number" name="soluong" onchange="changeNumber(this.value,<?php echo $key; ?>,<?php echo $product->price; ?>,<?php echo $product->getDiscountProductsDiscount(); ?>)" class="form-control" min="1" id="exampleInputEmail1" value="<?php echo $value['amount']; ?>">
                     </td>
                     <td class="col-sm-1 col-md-1 text-center"><strong><?= number_format($product->price) ?> VNĐ</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong id="<?php echo $key."thanhtien"; ?>"><?= number_format($product->price * $value['amount']) ?> VNĐ</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong  id="<?php echo $key."thanhtien"; ?>"><?php echo number_format($product->price * $value['amount'] * (100 - $product->getDiscountProductsDiscount()) /100 ) ?> VNĐ</strong>
+
+                        <p id="<?php echo $key."thanhtienan"; ?>" 
+                                style="display: none;">
+                                <?= (($product->price * $value['amount']) * (100 - $product->getDiscountProductsDiscount()))/100; ?></p>
+                    </td>
                     <td class="col-sm-1 col-md-1">
                     <button type="button" class="btn btn-danger" onclick="removeTr(<?php echo $key; ?>)">
                         <span class="glyphicon glyphicon-remove" ></span> Xoá sản phẩm

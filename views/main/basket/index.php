@@ -38,26 +38,13 @@ $product = new Product();
                         </button></td>
                     </tr> -->
                    <?php $product->showProductOnBasket(); ?>
+                    
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong id="tienTong">$24.59</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong id="tienKhuyenMai">$6.94</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h3>Thành tiền</h3></td>
-                        <td class="text-right"><h3><strong id="tongThanhTien">$31.53</strong></h3></td>
+                        <td><h4>Thành tiền</h4></td>
+                        <td class="text-right"><h4><strong id="tongThanhTien"></strong></h4></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -85,6 +72,13 @@ $product = new Product();
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+     $(document).ready(function(){       //Error happens here, $ is not defined.
+        tongthanhtien();
+    });
+
+
+
+
 	function removeTr(key){
 		var select = '#'+key+'tr';
 		$(select).remove();
@@ -101,15 +95,19 @@ $product = new Product();
  
                }
             });
+         tongthanhtien();
     }
 
-    function changeNumber(number,key,price){
-    	console.log(number);
-    	console.log(key);
-    	console.log(price);
-    	var select = key+'thanhtien';
-    	tien = number*price;
+    function changeNumber(number,key,price,discount){
+       
+    	// console.log(number);
+    	// console.log(key);
+    	// console.log(price);
+     //    console.log(discount);
+    	var select = key +'thanhtien';
+    	tien = number*price*(100-discount)/100;
     	thanhtien = new Intl.NumberFormat().format(tien) + " VNĐ";
+
     	$.ajax({
                url: '<?php echo Yii::$app->request->baseUrl. '/product/add-basket-button' ?>',
                type: 'post',
@@ -125,8 +123,30 @@ $product = new Product();
                }
                 });
     	document.getElementById(select).innerHTML = thanhtien;
+
+        var selectan =  key+'thanhtienan';
+        document.getElementById(selectan).innerHTML = tien;
+         tongthanhtien();
     	// console.log(thanhtien);
     	// console.log(select);
+    }
+    function tongthanhtien(){
+        //aData = array();
+        var sum = 0;
+        aData = $('.cotsanpham').find('p');
+        //console.log(aData);
+        aData.each(function(i,item){
+             sum += parseInt(item.innerHTML);
+          });
+        // var sum = 0;
+        // aData.foreach(function(item,index,array){
+        //     console.log(index);
+        //     sum += aData[index].innerHTML;
+        // });
+        sum1 = new Intl.NumberFormat().format(sum) + " VNĐ";
+        console.log(sum1);
+        document.getElementById("tongThanhTien").innerHTML = sum1;
+
     }
     
 </script>
