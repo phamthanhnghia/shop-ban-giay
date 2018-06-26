@@ -128,6 +128,17 @@ class Bill extends \yii\db\ActiveRecord
         } 
         return $pass; 
     }
+
+
+    public function sumBillSussecc(){
+        $bill = Bill::find()->where(['status' => 3])->all();
+        $sum = 0;
+        foreach ($bill as $key => $value) {
+            $sum += $value->total_price;
+        }
+        return $sum;
+
+    }
     
     public function showListBill(){
         try {

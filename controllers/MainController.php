@@ -18,7 +18,7 @@ use app\models\BillDetail;
 use app\controllers\BillController;
 use Yii;
 use app\controllers\SiteController;
-
+use app\components\Mailer\PHPMailer;
  
 class MainController extends Controller
 {
@@ -70,6 +70,8 @@ class MainController extends Controller
         $user = new User();
         if ($user->idLogged()) {
             $bill->createBill();
+            $this->sendMailSussecc();
+
             return $this->render('pay/success');
             //return $this->goHome();
         }
@@ -82,6 +84,7 @@ class MainController extends Controller
             $users->save();
             $_SESSION['ID_USER'] = $users->id;
             $bill->createBill();
+            $this->sendMailSussecc();
             return $this->render('pay/success');
         }
         return $this->render('info-customer/register');
@@ -113,6 +116,7 @@ class MainController extends Controller
                                 );
             $bill->update();
             $this->layout = 'layout-user';
+            $this->sendMailRemove();
             return $this->render('pay/remove');
         } catch (Exception $e) {
             $this->layout = 'layout-user';
@@ -124,11 +128,6 @@ class MainController extends Controller
 
         
         try {
-            // $billdetail = BillDetail::find()->where(['id_bill'=>$id])->all();
-            // foreach ($billdetail as $key) {
-            //     $key->delete();
-            // }
-            // $bill = Bill::findOne($id)->delete();
 
             $bill = Bill::findOne($id);
             $bill->attributes = array(
@@ -147,4 +146,81 @@ class MainController extends Controller
         $this->layout = 'layout-user';
         return $this->render('info-customer/index');
     }
+    public function sendMailSussecc(){
+        $mail = new PHPMailer(false);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';   //'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'hai.01678465648@gmail.com';                 // SMTP username
+            $mail->Password = '01678465648';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('hai.01678465648@gmail.com', 'Mailer');
+            $mail->addAddress('15520545@gm.uit.edu.vn', 'Joe User');     // Add a recipient
+            // $mail->addAddress($mail);               // Name is optional
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Xác nhận đơn hàng thành công';
+            $mail->Body    = 'Xác nhận đơn hàng thành công';
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            // echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+
+    }
+    public function sendMailRemove(){
+        $mail = new PHPMailer(false);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';   //'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'hai.01678465648@gmail.com';                 // SMTP username
+            $mail->Password = '01678465648';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('hai.01678465648@gmail.com', 'Mailer');
+            $mail->addAddress('15520545@gm.uit.edu.vn', 'Joe User');     // Add a recipient
+            // $mail->addAddress($mail);               // Name is optional
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Xác nhận hủy đơn hàng thành công';
+            $mail->Body    = 'Xác nhận hủy đơn hàng thành công';
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            // echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+
+    }
+
 }

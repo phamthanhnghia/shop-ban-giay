@@ -52,7 +52,7 @@ $user = new User();
     <div class="container">
         <?php User::CheckMessage();  ?>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="main box-border">
                     <div id="mi-slider" class="mi-slider">
                         <ul>
@@ -81,32 +81,7 @@ $user = new User();
             </div>
             <!-- /.col -->
             
-            <div class="col-md-3 text-center">
-                <div class=" col-md-12 col-sm-6 col-xs-6" >
-                    <div class="offer-text">
-                        30% off here
-                    </div>
-                    <div class="thumbnail product-box">
-                        <img src="assets-theme/img/dummyimg.png" alt="" />
-                        <div class="caption">
-                            <h3><a href="#">Samsung Galaxy </a></h3>
-                            <p><a href="#">Ptional dismiss button </a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-md-12 col-sm-6 col-xs-6">
-                    <div class="offer-text2">
-                        30% off here
-                    </div>
-                    <div class="thumbnail product-box">
-                        <img src="assets-theme/img/dummyimg.png" alt="" />
-                        <div class="caption">
-                            <h3><a href="#">Samsung Galaxy </a></h3>
-                            <p><a href="#">Ptional dismiss button </a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
             <!-- /.col -->
         </div>
         <!-- /.row -->
@@ -117,8 +92,8 @@ $user = new User();
             <div class="col-md-12">
                 <div>
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Electronics</li>
+                        <li><a href="#">Trang chủ</a></li>
+                        <li class="active">Sản phẩm</li>
                     </ol>
                 </div>
                 <!-- /.div -->
@@ -149,7 +124,7 @@ $user = new User();
         
         <div class="row">
             <div class="col-md-4">
-                <strong>Send a Quick Query </strong>
+                <strong>Gửi phản hồi</strong>
                 <hr>
                 <form>
                     <div class="row">
@@ -178,19 +153,19 @@ $user = new User();
             </div>
 
             <div class="col-md-4">
-                <strong>Our Location</strong>
+                <strong>Địa chỉ của chúng tôi</strong>
                 <hr>
                 <p>
-                     234, New york Street,<br />
-                                    Just Location, USA<br />
-                    Call: +09-456-567-890<br>
-                    Email: info@yourdomain.com<br>
+                     Địa chỉ<br />
+                                    <br />
+                    Call: <br>
+                    Email: info@shop.com<br>
                 </p>
 
-                2014 www.yourdomain.com | All Right Reserved
+               
             </div>
             <div class="col-md-4 social-box">
-                <strong>We are Social </strong>
+                <strong>Mạng xã hội của chúng tôi</strong>
                 <hr>
                 <a href="#"><i class="fa fa-facebook-square fa-3x "></i></a>
                 <a href="#"><i class="fa fa-twitter-square fa-3x "></i></a>
@@ -198,7 +173,7 @@ $user = new User();
                 <a href="#"><i class="fa fa-linkedin-square fa-3x "></i></a>
                 <a href="#"><i class="fa fa-pinterest-square fa-3x "></i></a>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere. Curabitur nec nisl odio. Mauris vehicula at nunc id posuere. 
+                     
                 </p>
             </div>
         </div>

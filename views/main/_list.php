@@ -6,11 +6,11 @@ use yii\widgets\LinkPager;
  ?>
  <div class="row">
         <div class="btn-group alg-right-pad">
-            <button type="button" class="btn btn-default"><strong>1235  </strong>items</button>
+            <!-- <button type="button" class="btn btn-default"><strong>1235  </strong>items</button>
             <div class="btn-group">
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                     Sort Products &nbsp;
-			<span class="caret"></span>
+			<span class="caret"></span> -->
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="#">By Price Low</a></li>

@@ -72,3 +72,6 @@ $number = new Number();
         </div>
         <!-- ./col -->
       </div>
+      <?php
+        echo number_format($bill->sumBillSussecc()) . " VNĐ" ;
+      ?>
