@@ -66,10 +66,10 @@ $aRole = $user->getArrayRole();
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Cập nhật</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <p></p>
 
           <div class="form-group">
                         <input type="text" class="form-control" id="username" value="<?= $user->username ?>" placeholder="User Name" >
